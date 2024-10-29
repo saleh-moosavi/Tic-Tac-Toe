@@ -1,4 +1,8 @@
-export const checkWinner = (allBlocks: any) => {
+interface checkWinnerType {
+  id: String;
+}
+
+export const checkWinner = (allBlocks: checkWinnerType[]) => {
   let winner;
   if (
     allBlocks[0].id !== "" &&

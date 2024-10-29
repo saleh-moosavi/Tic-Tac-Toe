@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import Block from "./Block";
 import { checkWinner } from "./checkWinner";
 
-let player = "X";
-let winner: any = null;
+let player: String = "X";
+let winner: String | undefined = undefined;
+
+interface blocksType {
+  id: String;
+}
 export default function Game() {
-  const [blocks, setBlocks] = useState(Array(9).fill({ id: "" }));
-  const [time, setTime] = useState<any>();
+  const [blocks, setBlocks] = useState<blocksType[]>(Array(9).fill({ id: "" }));
+  const [time, setTime] = useState<String>("");
 
   useEffect(() => {
     const times = setInterval(() => {
@@ -18,12 +22,14 @@ export default function Game() {
     };
   }, []);
 
-  const clickHandler = (e: any, index: any) => {
+  const clickHandler = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
     const allBlocks = [...blocks];
     if (allBlocks[index].id === "" && !winner) {
       allBlocks[index] = { id: player };
-      e.target.classList.add(player === "X" ? "bg-rose" : "bg-sky");
-      e.target.innerHTML = player === "X" ? "O" : "X";
+      (e.target as HTMLDivElement).classList.add(
+        player === "X" ? "bg-rose" : "bg-sky"
+      );
+      (e.target as HTMLDivElement).innerHTML = player === "X" ? "O" : "X";
       player = player === "X" ? "O" : "X";
       setBlocks(allBlocks);
       winner = checkWinner(allBlocks);
@@ -31,13 +37,13 @@ export default function Game() {
   };
 
   const resetGame = () => {
-    winner = null;
+    winner = undefined;
     player = "X";
     const allBlocks = [...blocks];
     document.querySelectorAll(".blockDiv").forEach((item) => {
       item.classList.remove("bg-sky", "bg-rose");
     });
-    allBlocks.map((item: any) => {
+    allBlocks.map((item: blocksType) => {
       item.id = "";
     });
     setBlocks(allBlocks);
@@ -48,7 +54,7 @@ export default function Game() {
       <h1 className="text-white font-semibold mb-10 text-lg">{time}</h1>
       <h2 className="text-white mb-5 text-lg font-semibold">Tik Tak Toe</h2>
       <div className="grid grid-rows-3 grid-cols-3 gap-3">
-        {blocks.map((block: any, index: any) => {
+        {blocks.map((block: blocksType, index: number) => {
           return (
             <Block
               key={index}
