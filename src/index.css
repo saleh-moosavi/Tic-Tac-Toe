@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-rose{
+    background-color: rgb(254 205 211)
+}
+
+.bg-sky{
+    background-color: rgb(186 230 253)
+}

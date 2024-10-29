@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Block from "./Block";
 import { checkWinner } from "./checkWinner";
 
@@ -6,12 +6,23 @@ let player = "X";
 let winner: any = null;
 export default function Game() {
   const [blocks, setBlocks] = useState(Array(9).fill({ id: "" }));
+  const [time, setTime] = useState<any>();
+
+  useEffect(() => {
+    const times = setInterval(() => {
+      const newTime = new Date();
+      setTime(newTime.toLocaleTimeString());
+    }, 1000);
+    return () => {
+      clearInterval(times);
+    };
+  }, []);
 
   const clickHandler = (e: any, index: any) => {
     const allBlocks = [...blocks];
     if (allBlocks[index].id === "" && !winner) {
       allBlocks[index] = { id: player };
-      e.target.classList.add(player === "X" ? "bg-rose-200" : "bg-sky-200");
+      e.target.classList.add(player === "X" ? "bg-rose" : "bg-sky");
       e.target.innerHTML = player === "X" ? "O" : "X";
       player = player === "X" ? "O" : "X";
       setBlocks(allBlocks);
@@ -24,7 +35,7 @@ export default function Game() {
     player = "X";
     const allBlocks = [...blocks];
     document.querySelectorAll(".blockDiv").forEach((item) => {
-      item.classList.remove("bg-sky-200", "bg-rose-200");
+      item.classList.remove("bg-sky", "bg-rose");
     });
     allBlocks.map((item: any) => {
       item.id = "";
@@ -34,7 +45,8 @@ export default function Game() {
 
   return (
     <>
-    <h2 className="text-white mb-5 text-lg font-semibold">Tik Tak Toe</h2>
+      <h1 className="text-white font-semibold mb-10 text-lg">{time}</h1>
+      <h2 className="text-white mb-5 text-lg font-semibold">Tik Tak Toe</h2>
       <div className="grid grid-rows-3 grid-cols-3 gap-3">
         {blocks.map((block: any, index: any) => {
           return (
