@@ -6,8 +6,9 @@ export default function Home() {
       <section className="p-5 w-1/3 bg-gradient-to-tr from-emerald-700 to-emerald-500 rounded-xl text-center">
         <h2 className="text-xl font-bold">Welcome to Here</h2>
         <h4 className="font-semibold text-sm">Choose One You Need</h4>
-        <article className="mt-5">
+        <article className="mt-5 flex gap-5 *:px-4 *:py-2 *:border *:rounded-lg">
           <Link to="/tic-tac-toe">Tic Tac Toe</Link>
+          <Link to="/guess-number">Guess The Number</Link>
         </article>
       </section>
     </div>
