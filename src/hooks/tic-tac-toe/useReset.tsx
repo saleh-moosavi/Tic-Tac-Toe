@@ -8,7 +8,7 @@ export default function useReset({
 }: TicTacToeBlock) {
   const resetGame = () => {
     // Reset refs
-    winner.current = undefined;
+    winner.current = "";
     player.current = "X";
     // Reset block styles
     document.querySelectorAll(".blockDiv").forEach((item) => {

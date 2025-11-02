@@ -1,6 +1,6 @@
 export const checkWinner = (
   allBlocks: {
-    id: String;
+    id: string;
   }[]
 ) => {
   let winner;

@@ -1,13 +1,12 @@
 export interface TicTacToeBlock {
-  blocks: { id: String }[];
-  setBlocks: React.Dispatch<React.SetStateAction<{ id: String }[]>>;
-  player: React.MutableRefObject<String>;
-  winner: React.MutableRefObject<String | undefined>;
+  blocks: { id: string }[];
+  setBlocks: React.Dispatch<React.SetStateAction<{ id: string }[]>>;
+  player: React.MutableRefObject<string>;
+  winner: React.MutableRefObject<string>;
 }
-
 
 export interface BlockType {
   id: number;
-  value: String;
+  value: string;
   handler: (e: React.MouseEvent<HTMLDivElement>, index: number) => void;
 }

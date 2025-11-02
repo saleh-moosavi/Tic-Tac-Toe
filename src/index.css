@@ -2,10 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-rose{
-    background-color: rgb(254 205 211)
+.bg-rose {
+  background-color: rgb(254 205 211);
 }
 
-.bg-sky{
-    background-color: rgb(186 230 253)
+.bg-sky {
+  background-color: rgb(186 230 253);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    opacity: 0;
+    scale: 0%;
+  }
+  75% {
+    opacity: 100;
+    scale: 100%;
+  }
+}
+
+.animate-float {
+  animation: float 1s ease-out infinite;
 }
