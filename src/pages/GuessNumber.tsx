@@ -1,53 +1,40 @@
-import { FormEvent, useRef, useState } from "react";
+import Game from "../component/guess-the-number/Game";
+import Setting from "../component/guess-the-number/Setting";
+import useHandler from "../hooks/guess-the-number/useHandler";
 
-let maxTryCount = 2;
 export default function GuessNumber() {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const [message, setMessage] = useState("");
-  const maxValue = 100;
-  const minValue = 1;
-  const choosedNumber = 12;
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (inputRef.current === null) return;
-    if (maxTryCount === 0) {
-      setMessage("You Loose");
-      return;
-    }
-    maxTryCount -= 1;
-    if (parseInt(inputRef.current.value) > choosedNumber) {
-      setMessage("Number Is Lower");
-    } else if (parseInt(inputRef.current.value) < choosedNumber) {
-      setMessage("Number Is Larger");
-    } else if (parseInt(inputRef.current.value) === choosedNumber) {
-      setMessage("You Win");
-    } else {
-      setMessage("Enter a Valid Number");
-    }
-  };
-
+  const {
+    max,
+    min,
+    tries,
+    message,
+    inputRef,
+    isSettingTab,
+    handleSubmit,
+    handleSetting,
+    setIsSettingTab,
+  } = useHandler();
   return (
-    <section className="flex justify-center items-center bg-stone-700 h-screen text-white">
-      <form
-        onSubmit={handleSubmit}
-        className="grid gap-5 border p-10 rounded-xl text-center"
+    <section className="flex flex-col justify-center items-center gap-5 bg-stone-700 h-screen text-white">
+      <p
+        onClick={() => setIsSettingTab(!isSettingTab)}
+        className="cursor-pointer border px-4 py-2 rounded-lg"
       >
-        <h2 className="text-xl font-bold">Guess The Hidden Number</h2>
-        <input
-          type="number"
-          ref={inputRef}
-          className="p-2 rounded-lg border-none outline-none focus:shadow-sm shadow-white text-black"
+        Go To {isSettingTab ? "Game" : "Setting"}
+      </p>
+
+      {isSettingTab ? (
+        <Setting handleSubmit={handleSetting} />
+      ) : (
+        <Game
+          inputRef={inputRef}
+          message={message}
+          minValue={min.toString()}
+          maxValue={max.toString()}
+          maxTryCount={tries.toString()}
+          handleSubmit={handleSubmit}
         />
-        {message && <p className="text-xs">{message}</p>}
-        <button type="submit" className="px-4 py-2 bg-sky-600 rounded-lg">
-          Check It
-        </button>
-        <p className="text-xs">
-          The Number Is Between {maxValue} And {minValue} . You Have{" "}
-          {maxTryCount} Chance
-        </p>
-      </form>
+      )}
     </section>
   );
 }
