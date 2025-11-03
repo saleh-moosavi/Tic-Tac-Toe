@@ -11,4 +11,5 @@ export interface gameProps {
 
 export interface settingProps {
   handleSubmit: (e: FormEvent) => void;
+  message: string;
 }

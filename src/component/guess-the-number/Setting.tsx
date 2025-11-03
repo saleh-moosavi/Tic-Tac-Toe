@@ -1,39 +1,49 @@
-import { settingProps } from "../../types/guessNumber";
+interface SettingProps {
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  message: string;
+}
 
-export default function Setting({ handleSubmit }: settingProps) {
+export default function Setting({ handleSubmit, message }: SettingProps) {
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="grid gap-5 border p-10 rounded-xl text-center"
-    >
-      <h2 className="text-xl font-bold">Change The Setting</h2>
+    <form onSubmit={handleSubmit} className="grid gap-3 text-center">
+      <h2 className="text-xl font-bold">Game Settings</h2>
 
-      <input
-        type="number"
-        name="min"
-        defaultValue={1}
-        placeholder="Min Number"
-        className="p-2 rounded-lg border-none outline-none focus:shadow-sm shadow-white text-black"
-      />
+      <label className="text-sm text-left">
+        Lower Number
+        <input
+          type="number"
+          name="min"
+          defaultValue={1}
+          className="w-full p-2 rounded-lg text-black mt-1"
+        />
+      </label>
 
-      <input
-        type="number"
-        name="max"
-        defaultValue={10}
-        placeholder="Max Number"
-        className="p-2 rounded-lg border-none outline-none focus:shadow-sm shadow-white text-black"
-      />
+      <label className="text-sm text-left">
+        Higher Number
+        <input
+          type="number"
+          name="max"
+          defaultValue={10}
+          className="w-full p-2 rounded-lg text-black mt-1"
+        />
+      </label>
 
-      <input
-        type="number"
-        name="tries"
-        defaultValue={3}
-        placeholder="Number of Tries"
-        className="p-2 rounded-lg border-none outline-none focus:shadow-sm shadow-white text-black"
-      />
+      <label className="text-sm text-left">
+        Number of Tries
+        <input
+          type="number"
+          name="tries"
+          defaultValue={3}
+          className="w-full p-2 rounded-lg text-black mt-1"
+        />
+      </label>
 
-      <button type="submit" className="px-4 py-2 bg-sky-600 rounded-lg">
-        Save
+      {message && <p className="text-xs text-red-400">{message}</p>}
+      <button
+        type="submit"
+        className="px-4 py-2 bg-blue-800 rounded-lg hover:bg-blue-700"
+      >
+        Save Settings
       </button>
     </form>
   );

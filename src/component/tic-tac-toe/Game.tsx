@@ -14,8 +14,19 @@ export default function Game() {
   const { clickHandler } = useClick({ blocks, setBlocks, player, winner });
 
   return (
-    <>
-      <h2 className="text-white mb-5 text-lg font-semibold">Tik Tak Toe</h2>
+    <article className="flex flex-col justify-center items-center">
+      {winner.current === "" ? (
+        <h3 className="text-white mb-10 text-xl">
+          Your Turn : {player.current}
+        </h3>
+      ) : (
+        <>
+          <h3 className="text-white mb-10 text-xl">
+            * {winner.current} * wins the game
+          </h3>
+          {winner.current !== "No One" && <WinBackGround />}
+        </>
+      )}
       <div className="grid grid-rows-3 grid-cols-3 gap-3">
         {blocks.map((block, index: number) => {
           return (
@@ -29,23 +40,11 @@ export default function Game() {
         })}
       </div>
       <button
-        className="text-white bg-green-700 px-3 py-2 rounded-lg mt-5 w-32 font-semibold z-20"
+        className="text-white bg-rose-500 px-3 py-2 rounded-lg mt-5 w-full font-semibold z-20"
         onClick={resetGame}
       >
         Reset
       </button>
-      {winner.current === "" ? (
-        <h3 className="text-white mt-10 text-xl">
-          Your Turn : {player.current}
-        </h3>
-      ) : (
-        <>
-          <h3 className="text-white mt-10 text-xl">
-            * {winner.current} * wins the game
-          </h3>
-          {winner.current !== "No One" && <WinBackGround />}
-        </>
-      )}
-    </>
+    </article>
   );
 }

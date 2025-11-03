@@ -1,40 +1,51 @@
 import Game from "../component/guess-the-number/Game";
+import BlurBackGround from "../component/BlurBackGround";
 import Setting from "../component/guess-the-number/Setting";
-import useHandler from "../hooks/guess-the-number/useHandler";
+import useGuessNumber from "../hooks/guess-the-number/useGuessNumber";
 
 export default function GuessNumber() {
   const {
-    max,
     min,
-    tries,
+    max,
+    remainingTries,
+    guess,
     message,
-    inputRef,
     isSettingTab,
-    handleSubmit,
-    handleSetting,
+    isGameOver,
+    setGuess,
     setIsSettingTab,
-  } = useHandler();
-  return (
-    <section className="flex flex-col justify-center items-center gap-5 bg-stone-700 h-screen text-white">
-      <p
-        onClick={() => setIsSettingTab(!isSettingTab)}
-        className="cursor-pointer border px-4 py-2 rounded-lg"
-      >
-        Go To {isSettingTab ? "Game" : "Setting"}
-      </p>
+    handleSetting,
+    handleGuess,
+    resetGame,
+  } = useGuessNumber();
 
-      {isSettingTab ? (
-        <Setting handleSubmit={handleSetting} />
-      ) : (
-        <Game
-          inputRef={inputRef}
-          message={message}
-          minValue={min.toString()}
-          maxValue={max.toString()}
-          maxTryCount={tries.toString()}
-          handleSubmit={handleSubmit}
-        />
-      )}
+  return (
+    <section className="flex flex-col justify-center items-center gap-5 h-screen text-white">
+      <BlurBackGround src="https://media.proprofs.com/images/QM/user_images/2290773/1531093844.jpeg" />
+      <button
+        onClick={() => setIsSettingTab(!isSettingTab)}
+        className="border px-4 py-2 bg-black/50 rounded-lg shadow-sm"
+      >
+        Go To {isSettingTab ? "Game" : "Settings"}
+      </button>
+
+      <article className="bg-black/50 border p-10 rounded-xl shadow-md shadow-cyan-200">
+        {isSettingTab ? (
+          <Setting handleSubmit={handleSetting} message={message} />
+        ) : (
+          <Game
+            min={min}
+            max={max}
+            remainingTries={remainingTries}
+            isGameOver={isGameOver}
+            guess={guess}
+            message={message}
+            setGuess={setGuess}
+            handleGuess={handleGuess}
+            resetGame={resetGame}
+          />
+        )}
+      </article>
     </section>
   );
 }
