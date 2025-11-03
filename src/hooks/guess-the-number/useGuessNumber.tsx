@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useGuessNumber() {
   const [min, setMin] = useState(1);
@@ -9,8 +9,13 @@ export default function useGuessNumber() {
 
   const [guess, setGuess] = useState("");
   const [message, setMessage] = useState("");
+  const [settingMessage, setSettingMessage] = useState("");
   const [isSettingTab, setIsSettingTab] = useState(true);
   const [isGameOver, setIsGameOver] = useState(false);
+
+  useEffect(() => {
+    resetGame();
+  }, [isSettingTab]);
 
   function generateRandom(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -24,7 +29,7 @@ export default function useGuessNumber() {
     const triesVal = Number(form.tries.value);
 
     if (isNaN(minVal) || isNaN(maxVal) || isNaN(triesVal) || minVal >= maxVal) {
-      setMessage("Please enter valid numbers.");
+      setSettingMessage("Please enter valid numbers.");
       return;
     }
 
@@ -33,7 +38,7 @@ export default function useGuessNumber() {
     setMaxTries(triesVal);
     setRemainingTries(triesVal);
     setTarget(generateRandom(minVal, maxVal));
-    setMessage("");
+    setSettingMessage("");
     setGuess("");
     setIsGameOver(false);
     setIsSettingTab(false);
@@ -88,6 +93,7 @@ export default function useGuessNumber() {
     isGameOver,
     guess,
     message,
+    settingMessage,
     setGuess,
     setIsSettingTab,
     handleSetting,

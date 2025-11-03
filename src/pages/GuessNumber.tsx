@@ -10,6 +10,7 @@ export default function GuessNumber() {
     remainingTries,
     guess,
     message,
+    settingMessage,
     isSettingTab,
     isGameOver,
     setGuess,
@@ -31,7 +32,7 @@ export default function GuessNumber() {
 
       <article className="bg-black/50 border p-10 rounded-xl shadow-md shadow-cyan-200">
         {isSettingTab ? (
-          <Setting handleSubmit={handleSetting} message={message} />
+          <Setting handleSubmit={handleSetting} message={settingMessage} />
         ) : (
           <Game
             min={min}

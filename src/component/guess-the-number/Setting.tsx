@@ -1,9 +1,6 @@
-interface SettingProps {
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  message: string;
-}
+import { ISettingProps } from "../../types/guessNumber";
 
-export default function Setting({ handleSubmit, message }: SettingProps) {
+export default function Setting({ handleSubmit, message }: ISettingProps) {
   return (
     <form onSubmit={handleSubmit} className="grid gap-3 text-center">
       <h2 className="text-xl font-bold">Game Settings</h2>
@@ -38,7 +35,9 @@ export default function Setting({ handleSubmit, message }: SettingProps) {
         />
       </label>
 
-      {message && <p className="text-xs text-red-400">{message}</p>}
+      {message && (
+        <p className="text-sm font-semibold text-red-400">{message}</p>
+      )}
       <button
         type="submit"
         className="px-4 py-2 bg-blue-800 rounded-lg hover:bg-blue-700"

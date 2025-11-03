@@ -1,15 +1,16 @@
-import { FormEvent } from "react";
-
-export interface gameProps {
-  inputRef: React.RefObject<HTMLInputElement>;
+export interface IGameProps {
+  min: number;
+  max: number;
+  remainingTries: number;
+  guess: string;
   message: string;
-  minValue?: string;
-  maxValue?: string;
-  maxTryCount?: string;
-  handleSubmit: (e: FormEvent) => void;
+  isGameOver: boolean;
+  setGuess: (val: string) => void;
+  handleGuess: (e: React.FormEvent<HTMLFormElement>) => void;
+  resetGame: () => void;
 }
 
-export interface settingProps {
-  handleSubmit: (e: FormEvent) => void;
+export interface ISettingProps {
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   message: string;
 }

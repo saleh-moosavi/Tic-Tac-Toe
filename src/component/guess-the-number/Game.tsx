@@ -1,14 +1,4 @@
-interface GameProps {
-  min: number;
-  max: number;
-  remainingTries: number;
-  guess: string;
-  message: string;
-  isGameOver: boolean;
-  setGuess: (val: string) => void;
-  handleGuess: (e: React.FormEvent<HTMLFormElement>) => void;
-  resetGame: () => void;
-}
+import { IGameProps } from "../../types/guessNumber";
 
 export default function Game({
   min,
@@ -20,10 +10,10 @@ export default function Game({
   setGuess,
   handleGuess,
   resetGame,
-}: GameProps) {
+}: IGameProps) {
   return (
     <form onSubmit={handleGuess} className="grid gap-5 text-center">
-      <h2 className="text-xl font-bold">Guess The Number 🎯</h2>
+      <h2 className="text-xl font-bold">Guess The Number</h2>
 
       <input
         type="number"
@@ -41,7 +31,7 @@ export default function Game({
       {!isGameOver ? (
         <button
           type="submit"
-          className="px-4 py-2 bg-sky-600 rounded-lg hover:bg-sky-500"
+          className="px-4 py-2 bg-blue-800 rounded-lg hover:bg-blue-700"
         >
           Check Guess
         </button>
