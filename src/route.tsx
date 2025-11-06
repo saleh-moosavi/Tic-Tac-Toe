@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import TicTacToe from "./pages/TicTacToe";
 import GuessNumber from "./pages/GuessNumber";
 import { createBrowserRouter } from "react-router-dom";
+import RockPaperScissors from "./pages/RockPaperScissors";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "/guess-number",
         element: <GuessNumber />,
+      },
+      {
+        path: "/rock-paper-scissors",
+        element: <RockPaperScissors />,
       },
     ],
   },

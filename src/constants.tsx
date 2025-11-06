@@ -1,4 +1,5 @@
 import { FaHome } from "react-icons/fa";
+import { LiaHandScissors } from "react-icons/lia";
 import { TbNumbers, TbTicTac } from "react-icons/tb";
 
 export const navLinks = [
@@ -19,5 +20,11 @@ export const navLinks = [
     href: "/guess-number",
     icon: <TbNumbers />,
     title: "Guess-The-Number",
+  },
+  {
+    id: 2,
+    href: "/rock-paper-scissors",
+    icon: <LiaHandScissors />,
+    title: "Rock-Paper-Scissors",
   },
 ];
