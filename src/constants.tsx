@@ -1,4 +1,9 @@
-import { FaHome } from "react-icons/fa";
+import {
+  FaHandPaper,
+  FaHandRock,
+  FaHandScissors,
+  FaHome,
+} from "react-icons/fa";
 import { LiaHandScissors } from "react-icons/lia";
 import { TbNumbers, TbTicTac } from "react-icons/tb";
 
@@ -27,4 +32,10 @@ export const navLinks = [
     icon: <LiaHandScissors />,
     title: "Rock-Paper-Scissors",
   },
+];
+
+export const allOptions = [
+  { icon: <FaHandRock />, title: "Rock" },
+  { icon: <FaHandPaper />, title: "Paper" },
+  { icon: <FaHandScissors />, title: "Scissors" },
 ];

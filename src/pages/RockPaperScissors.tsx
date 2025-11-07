@@ -1,12 +1,7 @@
+import { allOptions } from "../constants";
 import { ReactNode, useRef, useState } from "react";
 import BlurBackGround from "../component/BlurBackGround";
-import { FaHandPaper, FaHandRock, FaHandScissors } from "react-icons/fa";
-
-const allOptions = [
-  { icon: <FaHandRock />, title: "Rock" },
-  { icon: <FaHandPaper />, title: "Paper" },
-  { icon: <FaHandScissors />, title: "Scissors" },
-];
+import { getSecureRandomInt } from "../utils/randomInteger";
 
 export default function RockPaperScissors() {
   const [playerIcon, setPlayerIcon] = useState<ReactNode | null>(null);
@@ -20,17 +15,15 @@ export default function RockPaperScissors() {
   const [winner, setWinner] = useState<string | null>(null);
   const roundsInput = useRef<HTMLInputElement | null>(null);
 
-  const getSecureRandomInt = (max: number) => {
-    const array = new Uint32Array(1);
-    crypto.getRandomValues(array);
-    return array[0] % max;
-  };
+  // Refs to hold instant score & round values
+  const playerScoreRef = useRef(0);
+  const systemScoreRef = useRef(0);
+  const roundCountRef = useRef(0);
 
   const checkResult = (playerChoice: { icon: ReactNode; title: string }) => {
     if (!gameStarted || gameOver) return;
 
     const systemChoice = allOptions[getSecureRandomInt(3)];
-
     setPlayerIcon(playerChoice.icon);
     setSystemIcon(systemChoice.icon);
 
@@ -41,22 +34,25 @@ export default function RockPaperScissors() {
         (systemChoice.title === "Scissors" && playerChoice.title === "Paper");
 
       if (systemWins) {
-        setSystemScore((prev) => prev + 1);
+        systemScoreRef.current += 1;
+        setSystemScore(systemScoreRef.current);
       } else {
-        setPlayerScore((prev) => prev + 1);
+        playerScoreRef.current += 1;
+        setPlayerScore(playerScoreRef.current);
       }
     }
 
-    setRoundCount((prev) => {
-      const newCount = prev + 1;
-      if (newCount >= totalRounds) {
-        setGameOver(true);
-        if (playerScore > systemScore) setWinner("Player Wins!");
-        else if (playerScore < systemScore) setWinner("System Wins!");
-        else setWinner("It's a Draw!");
-      }
-      return newCount;
-    });
+    roundCountRef.current += 1;
+    setRoundCount(roundCountRef.current);
+
+    if (roundCountRef.current >= totalRounds) {
+      setGameOver(true);
+      if (playerScoreRef.current > systemScoreRef.current)
+        setWinner("Player Wins!");
+      else if (playerScoreRef.current < systemScoreRef.current)
+        setWinner("System Wins!");
+      else setWinner("It's a Draw!");
+    }
   };
 
   const startGame = () => {
@@ -67,6 +63,10 @@ export default function RockPaperScissors() {
   };
 
   const resetGame = () => {
+    playerScoreRef.current = 0;
+    systemScoreRef.current = 0;
+    roundCountRef.current = 0;
+
     setPlayerIcon(null);
     setSystemIcon(null);
     setPlayerScore(0);
@@ -85,6 +85,7 @@ export default function RockPaperScissors() {
 
         {gameStarted && (
           <>
+            {/* Player choices */}
             <article
               className={`flex justify-between items-center gap-2 text-white hover:*:text-yellow-500 *:cursor-pointer *:p-2 *:bg-white/20 *:rounded-lg transition-all duration-200 ${
                 gameOver ? "opacity-30 pointer-events-none" : ""
@@ -101,6 +102,7 @@ export default function RockPaperScissors() {
               ))}
             </article>
 
+            {/* Scoreboard */}
             <div className="flex justify-between items-center">
               <span className="w-20 aspect-square bg-gradient-to-tr from-blue-500 to-pink-500 rounded-lg flex justify-center items-center *:size-10">
                 {playerIcon}
