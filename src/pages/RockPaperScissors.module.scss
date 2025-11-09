@@ -1,0 +1,36 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  height: 100vh;
+  color: white;
+}
+
+.article {
+  min-width: 15rem;
+  background-color: rgba(23, 37, 84, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  text-align: center;
+
+  > :not(:first-child) {
+    margin-top: 1.25rem; // space-y-5
+  }
+
+  a {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+  }
+}
+
+.button {
+  width: 100%;
+  background-image: linear-gradient(to right, #db2777, #2563eb);
+  padding: 0 0.5rem;
+  font-weight: 700;
+  border-radius: 0.5rem;
+}

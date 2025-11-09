@@ -1,0 +1,65 @@
+$gradient-start: #e11d48; // rose-600
+$gradient-end: #2563eb; // blue-600
+$hover-bg: #facc15; // yellow-400
+$hover-text: #000;
+
+.homeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  overflow: hidden;
+}
+
+.section {
+  padding: 0.5rem;
+  width: 75%;
+  background: linear-gradient(to top right, $gradient-start, $gradient-end);
+  border-radius: 0.75rem;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    padding: 1.25rem;
+    width: 50%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 33.3333%;
+  }
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: bold;
+
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+  }
+}
+
+.article {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.link {
+  padding: 0.5rem 1rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+
+  @media (min-width: 768px) {
+    font-size: 0.875rem;
+  }
+
+  &:hover {
+    background-color: $hover-bg;
+    color: $hover-text;
+  }
+}

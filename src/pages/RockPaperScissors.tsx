@@ -1,4 +1,5 @@
 import { allOptions } from "../constants";
+import styles from "./RockPaperScissors.module.scss";
 import BlurBackGround from "../component/BlurBackGround";
 import useLogic from "../hooks/rocck-paper-scissors/useLogic";
 import Setting from "../component/rock-paper-scissors/Setting";
@@ -23,11 +24,11 @@ export default function RockPaperScissors() {
     setGameStarted,
   } = useLogic();
   return (
-    <section className="flex flex-col justify-center items-center gap-5 h-screen text-white">
+    <section className={styles.section}>
       <BlurBackGround src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTckX8P9E-Z-50acV3B6PWXeNHD9pdExIJipg&s" />
 
-      <article className="space-y-5 min-w-60 bg-blue-950/50 border p-5 rounded-xl text-center">
-        <h2 className="text-2xl font-bold">Rock · Paper · Scissors</h2>
+      <article className={styles.article}>
+        <h2>Rock · Paper · Scissors</h2>
 
         {gameStarted && (
           <>
@@ -58,7 +59,7 @@ export default function RockPaperScissors() {
           <Setting roundsInput={roundsInput} startGame={startGame} />
         ) : (
           <button
-            className="w-full bg-gradient-to-r from-pink-600 to-blue-600 py-2 rounded-lg font-bold"
+            className={styles.button}
             onClick={() => {
               resetGame();
               setGameStarted(false);

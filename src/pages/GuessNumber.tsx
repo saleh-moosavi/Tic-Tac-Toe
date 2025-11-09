@@ -1,3 +1,4 @@
+import styles from "./GuessNumber.module.scss";
 import Game from "../component/guess-the-number/Game";
 import BlurBackGround from "../component/BlurBackGround";
 import NewYearBombsWin from "../component/WinBackGround";
@@ -22,16 +23,16 @@ export default function GuessNumber() {
   } = useGuessNumber();
 
   return (
-    <section className="flex flex-col justify-center items-center gap-5 h-screen text-white">
+    <section className={styles.section}>
       <BlurBackGround src="https://media.proprofs.com/images/QM/user_images/2290773/1531093844.jpeg" />
       <button
         onClick={() => setIsSettingTab(!isSettingTab)}
-        className="border px-4 py-2 bg-black/50 rounded-lg shadow-sm"
+        className={styles.button}
       >
         Go To {isSettingTab ? "Game" : "Settings"}
       </button>
 
-      <article className="bg-black/50 border p-10 rounded-xl shadow-md shadow-cyan-200">
+      <article className={styles.article}>
         {isSettingTab ? (
           <Setting handleSubmit={handleSetting} message={settingMessage} />
         ) : (
