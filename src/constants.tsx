@@ -39,3 +39,15 @@ export const allOptions = [
   { icon: <FaHandPaper />, title: "Paper" },
   { icon: <FaHandScissors />, title: "Scissors" },
 ];
+
+export const COLORS = [
+  "#ff4d4f", // red
+  "#ffa940", // orange
+  "#ffd666", // yellow
+  "#73d13d", // green
+  "#36cfc9", // teal
+  "#40a9ff", // blue
+  "#9254de", // purple
+  "#ff85c0", // pink
+  "#ffffff", // white
+];

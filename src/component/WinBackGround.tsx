@@ -1,28 +1,6 @@
+import { COLORS } from "../constants";
 import { useRef, useEffect, useCallback } from "react";
-
-interface NewYearBombsWinProps {
-  durationMs?: number;
-  bursts?: number;
-  intensity?: number;
-}
-
-interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  ax: number;
-  ay: number;
-  size: number;
-  life: number;
-  ttl: number;
-  color: string;
-  shape: "rect" | "circle";
-  rotation: number;
-  vr: number;
-  friction: number;
-  fade: number;
-}
+import { NewYearBombsWinProps, Particle } from "../types/winnerBacground";
 
 export default function NewYearBombsWin({
   durationMs = 4000,
@@ -39,19 +17,6 @@ export default function NewYearBombsWin({
     Math.random() * (max - min) + min;
   const randInt = (min: number, max: number): number =>
     Math.floor(Math.random() * (max - min + 1) + min);
-
-  // Colors for confetti + sparks
-  const COLORS = [
-    "#ff4d4f", // red
-    "#ffa940", // orange
-    "#ffd666", // yellow
-    "#73d13d", // green
-    "#36cfc9", // teal
-    "#40a9ff", // blue
-    "#9254de", // purple
-    "#ff85c0", // pink
-    "#ffffff", // white
-  ];
 
   // Create a burst at (x, y) with N particles
   const createBurst = useCallback(
