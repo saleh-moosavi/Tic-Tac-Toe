@@ -2,6 +2,7 @@ import App from "./App";
 import Home from "./pages/Home";
 import TicTacToe from "./pages/TicTacToe";
 import GuessNumber from "./pages/GuessNumber";
+import Minesweeper from "./pages/Minesweeper";
 import { createBrowserRouter } from "react-router-dom";
 import RockPaperScissors from "./pages/RockPaperScissors";
 
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "/rock-paper-scissors",
         element: <RockPaperScissors />,
+      },
+      {
+        path: "/mine-sweeper",
+        element: <Minesweeper />,
       },
     ],
   },

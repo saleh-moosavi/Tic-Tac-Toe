@@ -15,7 +15,7 @@ export default function Home() {
               <Link key={item.id} to={item.href} className={styles.link}>
                 {item.title}
               </Link>
-            )
+            ),
           )}
         </article>
       </section>

@@ -1,0 +1,43 @@
+.section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.content {
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 0.1rem 0.1rem 0.2rem gray;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mineContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  justify-content: space-between;
+  justify-items: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem gray;
+}
+
+.mineContainer > li {
+  user-select: none;
+  color: black;
+  padding: 0.5rem 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

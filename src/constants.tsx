@@ -4,6 +4,7 @@ import {
   FaHandScissors,
   FaHome,
 } from "react-icons/fa";
+import { FaBomb } from "react-icons/fa6";
 import { LiaHandScissors } from "react-icons/lia";
 import { TbNumbers, TbTicTac } from "react-icons/tb";
 
@@ -27,10 +28,16 @@ export const navLinks = [
     title: "Guess-The-Number",
   },
   {
-    id: 2,
+    id: 3,
     href: "/rock-paper-scissors",
     icon: <LiaHandScissors />,
     title: "Rock-Paper-Scissors",
+  },
+  {
+    id: 4,
+    href: "/mine-sweeper",
+    icon: <FaBomb />,
+    title: "Mine-Sweeper",
   },
 ];
 
