@@ -1,54 +1,52 @@
-import { useState } from "react";
-import styles from "./Minesweeper.module.scss";
-import BlurBackGround from "../component/BlurBackGround";
 import { FaBomb } from "react-icons/fa";
-
-interface IRecords {
-  id: number;
-  isBomb: boolean;
-  isClicked: boolean;
-  bombCount: number;
-}
-const level = Array(25).fill(0);
-const init = level.map((_, i) => {
-  return { id: i, isBomb: false, bombCount: 0, isClicked: false };
-});
-const bombIndexes = Array(5)
-  .fill(0)
-  .map(() => Math.floor(Math.random() * 25));
-bombIndexes.map((item) => {
-  init.map((i) => {
-    if (i.id === item) i.isBomb = true;
-  });
-});
+import { useEffect, useState } from "react";
+import styles from "./Minesweeper.module.scss";
+import { IRecords } from "../types/mineSweeper";
+import CreateTable from "../utils/mineSweeperHelpers";
+import BlurBackGround from "../component/BlurBackGround";
 
 export default function Minesweeper() {
-  const [arrayContent, setArrayContent] = useState<IRecords[]>(init);
+  const [board, setBoard] = useState<IRecords[][]>([]);
 
-  const handleClik = (index: number) => {
-    const oldArr = arrayContent ? [...arrayContent] : [];
-    oldArr[index].isClicked = true;
-    if (
-      !oldArr[index].isBomb &&
-      !oldArr[index + 4]?.isBomb &&
-      !oldArr[index + 5]?.isBomb &&
-      !oldArr[index + 6]?.isBomb &&
-      !oldArr[index - 1]?.isBomb &&
-      !oldArr[index + 1]?.isBomb &&
-      !oldArr[index - 4]?.isBomb &&
-      !oldArr[index - 5]?.isBomb &&
-      !oldArr[index - 6]?.isBomb
-    ) {
-      oldArr[index + 4].isClicked = true;
-      oldArr[index + 5].isClicked = true;
-      oldArr[index + 6].isClicked = true;
-      oldArr[index - 1].isClicked = true;
-      oldArr[index + 1].isClicked = true;
-      oldArr[index - 4].isClicked = true;
-      oldArr[index - 5].isClicked = true;
-      oldArr[index - 6].isClicked = true;
+  useEffect(() => {
+    const { finaleTable } = CreateTable();
+    setBoard(finaleTable);
+  }, []);
+
+  const handleClick = (row: number, col: number) => {
+    const stack = [[row, col]];
+    while (stack.length > 0) {
+      const [currentRow, currentCol] = stack.pop() as number[];
+
+      // Check bounds and if already revealed
+      if (
+        currentRow < 0 ||
+        currentRow >= 5 ||
+        currentCol < 0 ||
+        currentCol >= 5 ||
+        board[currentRow][currentCol].isClicked
+      ) {
+        continue;
+      }
+
+      // Reveal the cell
+      const newBoard = [...board];
+      newBoard[currentRow][currentCol] = {
+        ...newBoard[currentRow][currentCol],
+        isClicked: true,
+      };
+      setBoard(newBoard);
+
+      // If it's empty, add neighbors to stack
+      if (newBoard[currentRow][currentCol].bombCount === 0) {
+        for (let i = -1; i <= 1; i++) {
+          for (let j = -1; j <= 1; j++) {
+            if (i === 0 && j === 0) continue;
+            stack.push([currentRow + i, currentCol + j]);
+          }
+        }
+      }
     }
-    setArrayContent(oldArr);
   };
 
   return (
@@ -57,11 +55,25 @@ export default function Minesweeper() {
       <article className={styles.content}>
         <h3>Mine Sweeper</h3>
         <ul className={styles.mineContainer}>
-          {arrayContent?.map((item) => (
-            <li key={item.id} onClick={() => handleClik(item.id)}>
-              {item.isClicked ? item.isBomb ? <FaBomb /> : item.bombCount : ""}
-            </li>
-          ))}
+          {board?.map((item, indexI) =>
+            item.map((td, indexJ) => {
+              const isBomb = td.isClicked && td.isBomb;
+              const isSafe = td.isClicked && !td.isBomb && td.bombCount == 0;
+              const isCounter =
+                td.isClicked && !td.isBomb && td.bombCount !== 0;
+              return (
+                <li
+                  key={indexI + "-" + indexJ}
+                  onClick={() => handleClick(indexI, indexJ)}
+                  className={isSafe ? styles.safeTd : ""}
+                >
+                  {isBomb && <FaBomb />}
+                  {isSafe && ""}
+                  {isCounter && td.bombCount}
+                </li>
+              );
+            }),
+          )}
         </ul>
       </article>
     </section>
