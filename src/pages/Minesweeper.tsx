@@ -7,13 +7,22 @@ import BlurBackGround from "../component/BlurBackGround";
 
 export default function Minesweeper() {
   const [board, setBoard] = useState<IRecords[][]>([]);
+  const [gameState, setGameState] = useState<"UNKNOWN" | "WIN" | "LOSE">(
+    "UNKNOWN",
+  );
 
   useEffect(() => {
-    const { finaleTable } = CreateTable();
-    setBoard(finaleTable);
+    handleReset();
   }, []);
 
+  const handleReset = () => {
+    const { finaleTable } = CreateTable();
+    setBoard(finaleTable);
+    setGameState("UNKNOWN");
+  };
+
   const handleClick = (row: number, col: number) => {
+    if (gameState !== "UNKNOWN") return;
     const stack = [[row, col]];
     while (stack.length > 0) {
       const [currentRow, currentCol] = stack.pop() as number[];
@@ -36,6 +45,7 @@ export default function Minesweeper() {
         isClicked: true,
       };
       setBoard(newBoard);
+      if (newBoard[currentRow][currentCol].isBomb) setGameState("LOSE");
 
       // If it's empty, add neighbors to stack
       if (newBoard[currentRow][currentCol].bombCount === 0) {
@@ -75,6 +85,18 @@ export default function Minesweeper() {
             }),
           )}
         </ul>
+        <div className={styles.cardFooter}>
+          <button onClick={handleReset} className={styles.button}>
+            Reset
+          </button>
+          {gameState === "LOSE" ? (
+            <p>You Lose</p>
+          ) : gameState === "WIN" ? (
+            <p>You Win</p>
+          ) : (
+            ""
+          )}
+        </div>
       </article>
     </section>
   );

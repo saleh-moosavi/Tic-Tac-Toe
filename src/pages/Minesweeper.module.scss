@@ -45,3 +45,19 @@
 .safeTd {
   background-color: gray;
 }
+
+.button {
+  width: 100%;
+  background-color: red;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.cardFooter {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.cardFooter > p {
+  font-size: small;
+}
