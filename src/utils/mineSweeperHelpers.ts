@@ -53,8 +53,21 @@ const addBombsToTable = (tableData: IRecords[][], bombIndexes: number[][]) => {
 export default function CreateTable() {
   const tableData = createArray2D();
   const bombIndexes = createBombIndexes();
-  console.log(bombIndexes);
   const finaleTable = addBombsToTable(tableData, bombIndexes);
 
   return { finaleTable };
 }
+
+// Check Wining
+export const checkIsWin = (currentBoard: IRecords[][]) => {
+  let revealedCount = 0;
+  for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 5; j++) {
+      if (!currentBoard[i][j].isBomb && currentBoard[i][j].isClicked) {
+        revealedCount += 1;
+      }
+    }
+  }
+  if (revealedCount >= 20) return true;
+  return false;
+};

@@ -2,8 +2,8 @@ import { FaBomb } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import styles from "./Minesweeper.module.scss";
 import { IRecords } from "../types/mineSweeper";
-import CreateTable from "../utils/mineSweeperHelpers";
 import BlurBackGround from "../component/BlurBackGround";
+import CreateTable, { checkIsWin } from "../utils/mineSweeperHelpers";
 
 export default function Minesweeper() {
   const [board, setBoard] = useState<IRecords[][]>([]);
@@ -24,6 +24,7 @@ export default function Minesweeper() {
   const handleClick = (row: number, col: number) => {
     if (gameState !== "UNKNOWN") return;
     const stack = [[row, col]];
+    const newBoard = [...board];
     while (stack.length > 0) {
       const [currentRow, currentCol] = stack.pop() as number[];
 
@@ -39,13 +40,15 @@ export default function Minesweeper() {
       }
 
       // Reveal the cell
-      const newBoard = [...board];
       newBoard[currentRow][currentCol] = {
         ...newBoard[currentRow][currentCol],
         isClicked: true,
       };
       setBoard(newBoard);
-      if (newBoard[currentRow][currentCol].isBomb) setGameState("LOSE");
+      if (newBoard[currentRow][currentCol].isBomb) {
+        setGameState("LOSE");
+        return;
+      }
 
       // If it's empty, add neighbors to stack
       if (newBoard[currentRow][currentCol].bombCount === 0) {
@@ -57,6 +60,7 @@ export default function Minesweeper() {
         }
       }
     }
+    if (checkIsWin(newBoard)) setGameState("WIN");
   };
 
   return (
