@@ -11,11 +11,17 @@
 .content {
   padding: 1rem 2rem;
   border-radius: 0.5rem;
-  background-color: white;
-  box-shadow: 0.1rem 0.1rem 0.2rem gray;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0.1rem 0.1rem 0.2rem rgba(255, 255, 255, 0.5);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.content > h3 {
+  color: white;
+  font-weight: bold;
+  user-select: none;
 }
 
 .mineContainer {
@@ -23,34 +29,47 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   justify-content: space-between;
   justify-items: center;
-  padding: 0.5rem;
   border-radius: 0.5rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem gray;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 .mineContainer > li {
+  background-color: rgba(255, 255, 255, 0.2);
   user-select: none;
   color: black;
   padding: 0.5rem 0.5rem;
   width: 2rem;
   height: 2rem;
-  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  transition: all;
+  transition-duration: 300ms;
 }
 
 .safeTd {
-  background-color: gray;
+  background-color: rgba(0, 0, 0, 0.2) !important;
 }
 
 .button {
   width: 100%;
-  background-color: red;
+  font-size: small;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(255, 255, 255, 0.2);
+  box-shadow: inset 1px 1px 3px white;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+  user-select: none;
+  transition: all;
+  transition-duration: 300ms;
+  &:hover {
+    background-color: rgb(255, 255, 255, 0.4);
+    box-shadow: inset 3px 3px 3px white;
+  }
 }
 
 .cardFooter {
@@ -60,4 +79,5 @@
 
 .cardFooter > p {
   font-size: small;
+  font-weight: bold;
 }

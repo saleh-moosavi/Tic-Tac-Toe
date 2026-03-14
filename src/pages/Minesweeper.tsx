@@ -94,11 +94,11 @@ export default function Minesweeper() {
             Reset
           </button>
           {gameState === "LOSE" ? (
-            <p>You Lose</p>
+            <p style={{ color: "#ff4848" }}>You Lose</p>
           ) : gameState === "WIN" ? (
-            <p>You Win</p>
+            <p style={{ color: "#54ff48" }}>You Win</p>
           ) : (
-            ""
+            <p style={{ color: "white" }}>...</p>
           )}
         </div>
       </article>
