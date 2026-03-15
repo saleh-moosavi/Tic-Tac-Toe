@@ -7,16 +7,17 @@ import CreateTable, { checkIsWin } from "../utils/mineSweeperHelpers";
 
 export default function Minesweeper() {
   const [board, setBoard] = useState<IRecords[][]>([]);
+  const [level, setLevel] = useState<5 | 7 | 10>(5);
   const [gameState, setGameState] = useState<"UNKNOWN" | "WIN" | "LOSE">(
     "UNKNOWN",
   );
 
   useEffect(() => {
     handleReset();
-  }, []);
+  }, [level]);
 
   const handleReset = () => {
-    const { finaleTable } = CreateTable();
+    const { finaleTable } = CreateTable(level);
     setBoard(finaleTable);
     setGameState("UNKNOWN");
   };
@@ -31,9 +32,9 @@ export default function Minesweeper() {
       // Check bounds and if already revealed
       if (
         currentRow < 0 ||
-        currentRow >= 5 ||
+        currentRow >= level ||
         currentCol < 0 ||
-        currentCol >= 5 ||
+        currentCol >= level ||
         board[currentRow][currentCol].isClicked
       ) {
         continue;
@@ -60,7 +61,7 @@ export default function Minesweeper() {
         }
       }
     }
-    if (checkIsWin(newBoard)) setGameState("WIN");
+    if (checkIsWin(newBoard, level)) setGameState("WIN");
   };
 
   return (
@@ -68,7 +69,21 @@ export default function Minesweeper() {
       <BlurBackGround src="/tic-tac-toe.jpg" />
       <article className={styles.content}>
         <h3>Mine Sweeper</h3>
-        <ul className={styles.mineContainer}>
+        <div className={styles.levelContainer}>
+          <button className={styles.button} onClick={() => setLevel(5)}>
+            Easy
+          </button>
+          <button className={styles.button} onClick={() => setLevel(7)}>
+            Medium
+          </button>
+          <button className={styles.button} onClick={() => setLevel(10)}>
+            Hard
+          </button>
+        </div>
+        <ul
+          className={styles.mineContainer}
+          style={{ gridTemplateColumns: `repeat(${level}, 1fr)` }}
+        >
           {board?.map((item, indexI) =>
             item.map((td, indexJ) => {
               const isBomb = td.isClicked && td.isBomb;
@@ -78,10 +93,11 @@ export default function Minesweeper() {
               return (
                 <li
                   key={indexI + "-" + indexJ}
-                  onClick={() => handleClick(indexI, indexJ)}
                   className={isSafe ? styles.safeTd : ""}
+                  onClick={() => handleClick(indexI, indexJ)}
+                  style={{ color: gameState == "WIN" ? "green" : "black" }}
                 >
-                  {isBomb && <FaBomb />}
+                  {isBomb && <FaBomb style={{ color: "red" }} />}
                   {isSafe && ""}
                   {isCounter && td.bombCount}
                 </li>

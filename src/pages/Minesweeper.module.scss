@@ -24,9 +24,17 @@
   user-select: none;
 }
 
+.levelContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
 .mineContainer {
+  margin: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   justify-content: space-between;
   justify-items: center;
   border-radius: 0.5rem;
