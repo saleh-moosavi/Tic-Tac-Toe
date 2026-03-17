@@ -1,7 +1,7 @@
 export const checkWinner = (
   allBlocks: {
     id: string;
-  }[]
+  }[],
 ) => {
   let winner;
   if (
