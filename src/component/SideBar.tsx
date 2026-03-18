@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { navLinks } from "../constants";
-import styles from "./SideBar.module.scss";
+import styles from "./Shared.module.scss";
 
 export default function SideBar() {
   return (
-    <aside className={styles.aside}>
+    <aside className={styles.sidebarWrapper}>
       {navLinks.map((item) => (
         <Link
           key={item.id}
@@ -14,7 +14,7 @@ export default function SideBar() {
           }`}
         >
           <span className="*:size-5">{item.icon}</span>
-          <span className={styles.tooltip}>{item.title}</span>
+          <span className={styles.sidebarTooltip}>{item.title}</span>
         </Link>
       ))}
     </aside>

@@ -18,9 +18,8 @@ export default function useTicTacToe({
     //check if block is already filled or game is won
     if (allBlocks[index].id !== "" || winner.current !== "") return;
     allBlocks[index] = { id: player.current };
-    (e.target as HTMLDivElement).classList.add(
-      player.current === "X" ? "bg-rose" : "bg-sky",
-    );
+    (e.target as HTMLDivElement).style.backgroundColor =
+      player.current === "X" ? "#fecdd3" : "#bae6fd";
     (e.target as HTMLDivElement).innerHTML = player.current === "X" ? "O" : "X";
     player.current = player.current === "X" ? "O" : "X";
     setBlocks(allBlocks);
@@ -33,7 +32,7 @@ export default function useTicTacToe({
     player.current = "X";
     // Reset block styles
     document.querySelectorAll(".blockDiv").forEach((item) => {
-      item.classList.remove("bg-sky", "bg-rose");
+      (item as HTMLDivElement).style.backgroundColor = "white";
     });
     // Reset blocks values
     const allBlocks = [...blocks];

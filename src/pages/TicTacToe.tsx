@@ -1,5 +1,6 @@
 import Card from "../component/Card";
 import { useRef, useState } from "react";
+import styles from "./TicTacToe.module.scss";
 import useTicTacToe from "../hooks/useTicTacToe";
 import WinBackGround from "../component/WinBackGround";
 
@@ -18,13 +19,13 @@ export default function TicTacToe() {
 
   return (
     <Card title="Tic Tac Toe" bgSrc="/tic-tac-toe.jpg">
-      <article className="flex flex-col justify-center items-center gap-5">
-        <div className="grid grid-rows-3 grid-cols-3 gap-3">
+      <article className={styles.container}>
+        <div>
           {blocks.map((block, index: number) => {
             return (
               <div
                 key={index}
-                className="blockDiv text-5xl cursor-pointer w-20 h-20 bg-white rounded-lg transition-all duration-300 flex justify-center items-center"
+                className={`${styles.block} blockDiv`}
                 onClick={(e) => clickHandler(e, index)}
               >
                 {block.id}
@@ -33,14 +34,10 @@ export default function TicTacToe() {
           })}
         </div>
         {winner.current === "" ? (
-          <h3 className="text-white text-lg font-semibold">
-            Your Turn : {player.current}
-          </h3>
+          <h3 className={styles.turnTitle}>Your Turn : {player.current}</h3>
         ) : (
           <>
-            <h3 className="text-white text-lg font-semibold">
-              * {winner.current} * wins the game
-            </h3>
+            <h3 className={styles.turnTitle}>* {winner.current} * wins</h3>
             {winner.current !== "No One" && <WinBackGround />}
           </>
         )}

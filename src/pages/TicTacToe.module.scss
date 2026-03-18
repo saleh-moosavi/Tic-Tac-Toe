@@ -1,8 +1,35 @@
-.section {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  gap: 1.25rem;
+}
+
+.container > div {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  cursor: pointer;
+  width: 5rem;
+  height: 5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  transition-property: all;
+  transition-duration: 300ms;
+}
+
+.turnTitle {
+  color: white;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
 }
