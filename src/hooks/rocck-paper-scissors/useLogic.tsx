@@ -10,7 +10,6 @@ export default function useLogic() {
   const [roundCount, setRoundCount] = useState(0);
   const [totalRounds, setTotalRounds] = useState(3);
   const [gameOver, setGameOver] = useState(false);
-  const [gameStarted, setGameStarted] = useState(false);
   const [winner, setWinner] = useState<string | null>(null);
   const roundsInput = useRef<HTMLInputElement | null>(null);
 
@@ -20,7 +19,7 @@ export default function useLogic() {
   const roundCountRef = useRef(0);
 
   const checkResult = (playerChoice: { icon: ReactNode; title: string }) => {
-    if (!gameStarted || gameOver) return;
+    if (gameOver) return;
 
     const systemChoice = allOptions[getSecureRandomInt(3)];
     setPlayerIcon(playerChoice.icon);
@@ -54,17 +53,13 @@ export default function useLogic() {
     }
   };
 
-  const startGame = () => {
-    const roundsValue = Number(roundsInput.current?.value || 3);
-    setTotalRounds(roundsValue);
-    setGameStarted(true);
-    resetGame();
-  };
-
   const resetGame = () => {
     playerScoreRef.current = 0;
     systemScoreRef.current = 0;
     roundCountRef.current = 0;
+
+    const roundsValue = Number(roundsInput.current?.value || 3);
+    setTotalRounds(roundsValue);
 
     setPlayerIcon(null);
     setSystemIcon(null);
@@ -89,12 +84,9 @@ export default function useLogic() {
     setTotalRounds,
     gameOver,
     setGameOver,
-    gameStarted,
-    setGameStarted,
     winner,
     setWinner,
     checkResult,
-    startGame,
     resetGame,
     roundsInput,
   };

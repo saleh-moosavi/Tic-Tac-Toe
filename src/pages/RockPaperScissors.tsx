@@ -1,14 +1,10 @@
+import Card from "../component/Card";
 import { allOptions } from "../constants";
 import styles from "./RockPaperScissors.module.scss";
-import BlurBackGround from "../component/BlurBackGround";
 import useLogic from "../hooks/rocck-paper-scissors/useLogic";
-import Setting from "../component/rock-paper-scissors/Setting";
-import Scoreboard from "../component/rock-paper-scissors/Scoreboard";
-import ChoiceOptions from "../component/rock-paper-scissors/ChoiceOptions";
 
 export default function RockPaperScissors() {
   const {
-    gameStarted,
     gameOver,
     checkResult,
     playerIcon,
@@ -19,56 +15,79 @@ export default function RockPaperScissors() {
     totalRounds,
     winner,
     roundsInput,
-    startGame,
     resetGame,
-    setGameStarted,
   } = useLogic();
   return (
-    <section className={styles.section}>
-      <BlurBackGround src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTckX8P9E-Z-50acV3B6PWXeNHD9pdExIJipg&s" />
+    <Card
+      title="Rock · Paper · Scissors"
+      // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTckX8P9E-Z-50acV3B6PWXeNHD9pdExIJipg&s"
+      bgSrc="/home.jpeg"
+    >
+      <>
+        {/* Player choices */}
+        <article
+          className={`flex justify-between items-center gap-2 text-white hover:*:text-yellow-500 *:cursor-pointer *:p-2 *:bg-white/20 *:rounded-lg transition-all duration-200 ${
+            gameOver ? "opacity-30 pointer-events-none" : ""
+          }`}
+        >
+          {allOptions.map((item) => (
+            <span
+              key={item.title}
+              className="*:size-8"
+              onClick={() => checkResult(item)}
+            >
+              {item.icon}
+            </span>
+          ))}
+        </article>
 
-      <article className={styles.article}>
-        <h2>Rock · Paper · Scissors</h2>
+        {/* Scoreboard */}
+        <div className="flex justify-between items-center gap-2 text-white">
+          <span className="w-20 aspect-square bg-gradient-to-tr from-blue-500 to-pink-500 rounded-lg flex justify-center items-center *:size-10">
+            {playerIcon}
+          </span>
 
-        {gameStarted && (
-          <>
-            {/* Player choices */}
-            <ChoiceOptions
-              gameOver={gameOver}
-              allOptions={allOptions}
-              checkResult={checkResult}
-            />
+          <span className="font-bold text-lg">
+            {playerScore} /VS/ {systemScore}
+          </span>
 
-            {/* Scoreboard */}
-            <Scoreboard
-              gameOver={gameOver}
-              playerIcon={playerIcon}
-              playerScore={playerScore}
-              systemIcon={systemIcon}
-              systemScore={systemScore}
-              roundCount={roundCount}
-              totalRounds={totalRounds}
-              winner={winner}
-            />
-          </>
-        )}
+          <span className="w-20 aspect-square bg-gradient-to-tr from-blue-500 to-pink-500 rounded-lg flex justify-center items-center *:size-10">
+            {systemIcon}
+          </span>
+        </div>
 
-        <hr />
+        <p className="mt-2 text-sm opacity-75 text-white">
+          Round: {roundCount} / {totalRounds}
+        </p>
+      </>
 
-        {!gameStarted ? (
-          <Setting roundsInput={roundsInput} startGame={startGame} />
-        ) : (
-          <button
-            className={styles.button}
-            onClick={() => {
-              resetGame();
-              setGameStarted(false);
-            }}
-          >
-            Reset Game
-          </button>
-        )}
-      </article>
-    </section>
+      <hr />
+
+      <section className="flex flex-col gap-3 text-white">
+        <div className="flex justify-between items-center gap-5">
+          <p>How Many Rounds?</p>
+          <input
+            min={1}
+            ref={roundsInput}
+            type="number"
+            defaultValue={3}
+            className="p-1 text-black rounded-lg inline-block w-12 text-center border-none outline-none"
+          />
+        </div>
+      </section>
+      <button
+        className={styles.button}
+        onClick={() => {
+          resetGame();
+        }}
+      >
+        Reset Game
+      </button>
+      {gameOver && (
+        <div className="text-xl font-bold text-yellow-400 animate-pulse">
+          {winner}
+        </div>
+      )}
+    </Card>
   );
 }

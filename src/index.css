@@ -2,22 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes float {
-  0%,
-  100% {
-    opacity: 0;
-    scale: 0%;
-  }
-  75% {
-    opacity: 100;
-    scale: 100%;
-  }
-}
-
-.animate-float {
-  animation: float 1s ease-out infinite;
-}
-
 input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
 }
