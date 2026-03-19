@@ -1,6 +1,6 @@
-import { allOptions } from "../../constants";
+import { allOptions } from "../constants";
 import { ReactNode, useRef, useState } from "react";
-import { getSecureRandomInt } from "../../utils/randomInteger";
+import { getSecureRandomInt } from "../utils/randomInteger";
 
 export default function useLogic() {
   const [playerIcon, setPlayerIcon] = useState<ReactNode | null>(null);

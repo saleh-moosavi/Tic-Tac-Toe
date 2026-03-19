@@ -1,7 +1,7 @@
 import Card from "../component/Card";
 import { allOptions } from "../constants";
 import styles from "./RockPaperScissors.module.scss";
-import useLogic from "../hooks/rocck-paper-scissors/useLogic";
+import useLogic from "../hooks/useRockPaperScissors";
 
 export default function RockPaperScissors() {
   const {

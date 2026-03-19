@@ -3,7 +3,7 @@ import Game from "../component/guess-the-number/Game";
 import BlurBackGround from "../component/BlurBackGround";
 import NewYearBombsWin from "../component/WinBackGround";
 import Setting from "../component/guess-the-number/Setting";
-import useGuessNumber from "../hooks/guess-the-number/useGuessNumber";
+import useGuessNumber from "../hooks/useGuessNumber";
 
 export default function GuessNumber() {
   const {
