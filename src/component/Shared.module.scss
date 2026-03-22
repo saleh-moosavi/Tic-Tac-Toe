@@ -73,3 +73,21 @@
     visibility: visible;
   }
 }
+
+.button {
+  width: 100%;
+  font-size: small;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(255, 255, 255, 0.2);
+  box-shadow: inset 1px 1px 3px white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  user-select: none;
+  transition: all;
+  transition-duration: 300ms;
+  &:hover {
+    background-color: rgb(255, 255, 255, 0.4);
+    box-shadow: inset 3px 3px 3px white;
+  }
+}

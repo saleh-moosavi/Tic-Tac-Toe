@@ -1,3 +1,4 @@
+import Btn from "../component/Btn";
 import Card from "../component/Card";
 import { FaBomb } from "react-icons/fa";
 import styles from "./Minesweeper.module.scss";
@@ -45,9 +46,7 @@ export default function Minesweeper() {
         )}
       </ul>
       <div className={styles.cardFooter}>
-        <button onClick={handleReset} className={styles.button}>
-          Reset
-        </button>
+        <Btn onClick={handleReset}>Reset</Btn>
         {gameState === "LOSE" ? (
           <p style={{ color: "#ff4848" }}>You Lose</p>
         ) : gameState === "WIN" ? (

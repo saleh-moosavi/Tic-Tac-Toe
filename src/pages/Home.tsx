@@ -1,3 +1,4 @@
+import Btn from "../component/Btn";
 import { Link } from "react-router-dom";
 import { navLinks } from "../constants";
 import styles from "./Home.module.scss";
@@ -12,9 +13,11 @@ export default function Home() {
         <article className={styles.article}>
           {navLinks.map((item) =>
             item.id === 0 ? null : (
-              <Link key={item.id} to={item.href} className={styles.link}>
-                {item.title}
-              </Link>
+              <Btn>
+                <Link key={item.id} to={item.href}>
+                  {item.title}
+                </Link>
+              </Btn>
             ),
           )}
         </article>

@@ -47,21 +47,3 @@ $hover-text: #000;
   justify-content: space-between;
   gap: 0.5rem;
 }
-
-.link {
-  padding: 0.5rem 1rem;
-  border: 1px solid white;
-  border-radius: 0.5rem;
-  font-size: 0.6rem;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-
-  @media (min-width: 768px) {
-    font-size: 0.875rem;
-  }
-
-  &:hover {
-    background-color: $hover-bg;
-    color: $hover-text;
-  }
-}

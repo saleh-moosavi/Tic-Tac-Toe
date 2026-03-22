@@ -1,6 +1,6 @@
+import Btn from "../component/Btn";
 import Card from "../component/Card";
 import { allOptions } from "../constants";
-import styles from "./RockPaperScissors.module.scss";
 import useLogic from "../hooks/useRockPaperScissors";
 
 export default function RockPaperScissors() {
@@ -75,14 +75,7 @@ export default function RockPaperScissors() {
           />
         </div>
       </section>
-      <button
-        className={styles.button}
-        onClick={() => {
-          resetGame();
-        }}
-      >
-        Reset Game
-      </button>
+      <Btn onClick={resetGame}>Reset Game</Btn>
       {gameOver && (
         <div className="text-xl font-bold text-yellow-400 animate-pulse">
           {winner}

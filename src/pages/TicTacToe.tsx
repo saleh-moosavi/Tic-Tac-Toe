@@ -1,3 +1,4 @@
+import Btn from "../component/Btn";
 import Card from "../component/Card";
 import { useRef, useState } from "react";
 import styles from "./TicTacToe.module.scss";
@@ -41,12 +42,7 @@ export default function TicTacToe() {
             {winner.current !== "No One" && <WinBackGround />}
           </>
         )}
-        <button
-          className="text-white bg-rose-500 px-3 py-2 rounded-lg w-full font-semibold z-20"
-          onClick={resetGame}
-        >
-          Reset
-        </button>
+        <Btn onClick={resetGame}>Reset</Btn>
       </article>
     </Card>
   );
