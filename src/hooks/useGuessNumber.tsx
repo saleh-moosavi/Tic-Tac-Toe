@@ -70,9 +70,9 @@ export default function useGuessNumber() {
     }
 
     if (numGuess > target) {
-      setMessage("Too high! Try a smaller number.");
+      setMessage("Try a smaller number.");
     } else {
-      setMessage("Too low! Try a larger number.");
+      setMessage("Try a larger number.");
     }
   };
 

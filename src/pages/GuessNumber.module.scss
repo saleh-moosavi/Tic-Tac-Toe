@@ -1,15 +1,41 @@
-.section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1.25rem;
-  height: 100vh;
-  color: white;
-}
-
 .article {
+  color: white;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.guessForm {
+  display: grid;
+  gap: 1.25rem;
+  text-align: center;
+  font-size: smaller;
+}
+
+.gameDetails {
+  display: flex;
+  justify-content: space-between;
+}
+
+.settingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  & > section {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    text-align: center;
+    & > label {
+      width: 4rem;
+      display: flex;
+      flex-direction: column;
+      font-size: smaller;
+    }
+  }
+}
+
+.settingMessage {
+  font-size: smaller;
+  color: rgb(255, 163, 178);
 }
