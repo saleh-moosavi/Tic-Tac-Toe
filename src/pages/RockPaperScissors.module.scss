@@ -1,36 +1,73 @@
-.section {
+.article {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 1.25rem;
-  height: 100vh;
+  gap: 0.5rem;
+  color: white;
+  & > * {
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    transition: all;
+    transition-duration: 200ms;
+    &:hover {
+      color: yellow;
+    }
+  }
+}
+
+.scoreboardDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  :first-child,
+  :last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    width: 5rem;
+    aspect-ratio: 1/1;
+    background-color: rgba(255, 255, 255, 0.2);
+    & > * {
+      background-color: transparent;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+}
+
+.round {
+  margin-top: 0.5rem;
+  font-size: smaller;
+  opacity: 0.75;
   color: white;
 }
 
-.article {
-  min-width: 15rem;
-  background-color: rgba(23, 37, 84, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 1.25rem;
-  border-radius: 0.75rem;
-  text-align: center;
-
-  > :not(:first-child) {
-    margin-top: 1.25rem; // space-y-5
-  }
-
-  a {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: 700;
+.settingSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: white;
+  & > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.25rem;
   }
 }
 
-.button {
-  width: 100%;
-  background-image: linear-gradient(to right, #db2777, #2563eb);
-  padding: 0 0.5rem;
-  font-weight: 700;
-  border-radius: 0.5rem;
+.messageGameState {
+  font-size: large;
+  font-weight: bold;
+  color: yellow;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
 }
