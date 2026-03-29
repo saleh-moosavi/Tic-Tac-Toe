@@ -46,10 +46,10 @@ export default function useLogic() {
     if (roundCountRef.current >= totalRounds) {
       setGameOver(true);
       if (playerScoreRef.current > systemScoreRef.current)
-        setWinner("Player Wins!");
+        setWinner("Player Win !");
       else if (playerScoreRef.current < systemScoreRef.current)
-        setWinner("System Wins!");
-      else setWinner("It's a Draw!");
+        setWinner("System Win !");
+      else setWinner("Draw !");
     }
   };
 

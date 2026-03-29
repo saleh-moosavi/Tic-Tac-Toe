@@ -11,15 +11,9 @@ export default function Minesweeper() {
   return (
     <Card title="Mine Sweeper" bgSrc="/tic-tac-toe.jpg">
       <div className={styles.levelContainer}>
-        <button className={styles.button} onClick={() => setLevel(5)}>
-          Easy
-        </button>
-        <button className={styles.button} onClick={() => setLevel(7)}>
-          Medium
-        </button>
-        <button className={styles.button} onClick={() => setLevel(10)}>
-          Hard
-        </button>
+        <Btn onClick={() => setLevel(5)}>Easy</Btn>
+        <Btn onClick={() => setLevel(7)}>Medium</Btn>
+        <Btn onClick={() => setLevel(10)}>Hard</Btn>
       </div>
       <ul
         className={styles.mineContainer}

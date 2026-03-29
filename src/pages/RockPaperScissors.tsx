@@ -1,5 +1,6 @@
 import Btn from "../component/Btn";
 import Card from "../component/Card";
+import Input from "../component/Input";
 import { allOptions } from "../constants";
 import useLogic from "../hooks/useRockPaperScissors";
 import styles from "./RockPaperScissors.module.scss";
@@ -63,12 +64,12 @@ export default function RockPaperScissors() {
       <section className={styles.settingSection}>
         <div>
           <p>How Many Rounds?</p>
-          <input
+          <Input
+            type="number"
             min={1}
             ref={roundsInput}
-            type="number"
             defaultValue={3}
-            className="p-1 text-black rounded-lg inline-block w-12 text-center border-none outline-none"
+            costumClass="max-w-10"
           />
         </div>
       </section>
