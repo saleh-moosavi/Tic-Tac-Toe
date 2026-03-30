@@ -1,4 +1,5 @@
 import {
+  FaBrain,
   FaHandPaper,
   FaHandRock,
   FaHandScissors,
@@ -38,6 +39,12 @@ export const navLinks = [
     href: "/mine-sweeper",
     icon: <FaBomb />,
     title: "Mine-Sweeper",
+  },
+  {
+    id: 5,
+    href: "/memory-game",
+    icon: <FaBrain />,
+    title: "Memory-Game",
   },
 ];
 

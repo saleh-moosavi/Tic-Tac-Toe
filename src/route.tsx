@@ -1,6 +1,7 @@
 import App from "./App";
 import Home from "./pages/Home";
 import TicTacToe from "./pages/TicTacToe";
+import MemoryGame from "./pages/MemoryGame";
 import GuessNumber from "./pages/GuessNumber";
 import Minesweeper from "./pages/Minesweeper";
 import { createBrowserRouter } from "react-router-dom";
@@ -31,6 +32,22 @@ export const router = createBrowserRouter([
         path: "/mine-sweeper",
         element: <Minesweeper />,
       },
+      {
+        path: "/memory-game",
+        element: <MemoryGame />,
+      },
+      // {
+      //   path: "/password-generator",
+      //   element: <Minesweeper />,
+      // },
+      // {
+      //   path: "/unit-converter",
+      //   element: <Minesweeper />,
+      // },
+      // {
+      //   path: "/calculator",
+      //   element: <Minesweeper />,
+      // },
     ],
   },
 ]);
