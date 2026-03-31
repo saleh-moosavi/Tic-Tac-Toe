@@ -1,0 +1,53 @@
+.memoryGame {
+  font-family: sans-serif;
+  text-align: center;
+  margin: 20px;
+  color: white;
+}
+
+.levelSelect {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.gameBoard {
+  display: grid;
+  justify-items: center;
+  grid-gap: 0.25rem;
+  max-width: fit-content;
+  margin: auto;
+}
+
+.card {
+  width: 5rem;
+  height: 5rem;
+  background-color: #f0f0f0;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.flipped {
+  background-color: #fff;
+  transform: rotateY(180deg);
+  border: 1px solid #000;
+}
+
+.matched {
+  background-color: #ddd;
+  border: 1px solid #aaa;
+  cursor: not-allowed;
+}
+
+.gameInfo {
+  margin-top: 20px;
+
+  p {
+    margin: 5px 0;
+  }
+}
