@@ -25,11 +25,16 @@
   background-color: #f0f0f0;
   color: black;
   display: flex;
+  font-size: xx-large;
   justify-content: center;
   align-items: center;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
+
+  & > * {
+    transform: rotateY(180deg);
+  }
 }
 
 .flipped {

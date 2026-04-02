@@ -1,11 +1,18 @@
 import {
+  FaAndroid,
+  FaApple,
   FaBrain,
+  FaClock,
+  FaGamepad,
   FaHandPaper,
   FaHandRock,
   FaHandScissors,
   FaHome,
+  FaMobile,
+  FaMoneyBill,
+  FaRobot,
 } from "react-icons/fa";
-import { FaBomb } from "react-icons/fa6";
+import { FaBomb, FaElevator, FaGear, FaTornado } from "react-icons/fa6";
 import { LiaHandScissors } from "react-icons/lia";
 import { TbNumbers, TbTicTac } from "react-icons/tb";
 
@@ -64,4 +71,17 @@ export const COLORS = [
   "#9254de", // purple
   "#ff85c0", // pink
   "#ffffff", // white
+];
+
+export const memoryGameSymbols = [
+  <FaApple />,
+  <FaTornado />,
+  <FaGear />,
+  <FaClock />,
+  <FaMoneyBill />,
+  <FaRobot />,
+  <FaAndroid />,
+  <FaGamepad />,
+  <FaMobile />,
+  <FaElevator />,
 ];

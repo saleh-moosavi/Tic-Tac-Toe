@@ -1,5 +1,6 @@
 import { IMemoryItem } from "../types/memoryGame";
 import { useEffect, useRef, useState } from "react";
+import { generateCardSymbol } from "../utils/memoryGame";
 
 export default function useMemoryGame() {
   const flipTimeRef = useRef<boolean>(false);
@@ -19,9 +20,9 @@ export default function useMemoryGame() {
       .map(() => {
         return { symbol: 0, isFlipped: false, isMatched: false };
       });
-    setCards(init);
+    oldCardsRef.current = generateCardSymbol(init);
+    setCards(oldCardsRef.current);
     setMoves(0);
-    oldCardsRef.current = init;
     flipTimeRef.current = false;
     SetIsWin(false);
   };

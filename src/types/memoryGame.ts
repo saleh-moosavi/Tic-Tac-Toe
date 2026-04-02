@@ -1,5 +1,7 @@
+import { ReactNode } from "react";
+
 export interface IMemoryItem {
-  symbol: number;
+  symbol: ReactNode;
   isFlipped: boolean;
   isMatched: boolean;
 }
