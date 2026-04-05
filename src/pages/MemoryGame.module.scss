@@ -22,7 +22,7 @@
 .card {
   width: 5rem;
   height: 5rem;
-  background-color: #f0f0f0;
+  background-color: white;
   color: black;
   display: flex;
   font-size: xx-large;
@@ -38,14 +38,13 @@
 }
 
 .flipped {
-  background-color: #fff;
+  background-color: antiquewhite;
   transform: rotateY(180deg);
   border: 1px solid #000;
 }
 
 .matched {
-  background-color: #ddd;
-  border: 1px solid #aaa;
+  background-color: palegreen !important;
   cursor: not-allowed;
 }
 

@@ -4,7 +4,8 @@ import styles from "./MemoryGame.module.scss";
 import useMemoryGame from "../hooks/useMemoryGame";
 
 export default function MemoryGame() {
-  const { level, setLevel, cards, moves, isWin, handleClick } = useMemoryGame();
+  const { level, setLevel, cards, moves, isWin, handleClick, handleReset } =
+    useMemoryGame();
 
   return (
     <Card bgSrc="/home.jpeg" title="Memory Game">
@@ -31,8 +32,9 @@ export default function MemoryGame() {
           ))}
         </div>
         <div className={styles.gameInfo}>
-          <p>{isWin ? `You won in ${moves} moves` : `Moves: ${moves}`}</p>
+          <p>{isWin ? `You Win in ${moves} Moves` : `Moves : ${moves}`}</p>
         </div>
+        <Btn onClick={() => handleReset()}>Reset</Btn>
       </div>
     </Card>
   );

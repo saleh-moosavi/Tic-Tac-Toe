@@ -72,6 +72,8 @@ export default function useMemoryGame() {
         firstFlipedCardRef.current !== null &&
         prevCards[firstFlipedCardRef.current].symbol == prevCards[index].symbol
       ) {
+        prevCards[firstFlipedCardRef.current!].isMatched = true;
+        prevCards[index].isMatched = true;
         checkIsWin(prevCards);
         handleNextMove();
         return;
