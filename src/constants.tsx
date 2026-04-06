@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { FaBomb, FaElevator, FaGear, FaTornado } from "react-icons/fa6";
 import { LiaHandScissors } from "react-icons/lia";
+import { RiCharacterRecognitionLine } from "react-icons/ri";
 import { TbNumbers, TbTicTac } from "react-icons/tb";
 
 export const navLinks = [
@@ -52,6 +53,12 @@ export const navLinks = [
     href: "/memory-game",
     icon: <FaBrain />,
     title: "Memory-Game",
+  },
+  {
+    id: 6,
+    href: "/guess-word",
+    icon: <RiCharacterRecognitionLine />,
+    title: "Guess-The-Word",
   },
 ];
 

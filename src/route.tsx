@@ -1,5 +1,6 @@
 import App from "./App";
 import Home from "./pages/Home";
+import GuessWord from "./pages/GuessWord";
 import TicTacToe from "./pages/TicTacToe";
 import MemoryGame from "./pages/MemoryGame";
 import GuessNumber from "./pages/GuessNumber";
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/memory-game",
         element: <MemoryGame />,
+      },
+      {
+        path: "/guess-word",
+        element: <GuessWord />,
       },
       // {
       //   path: "/password-generator",
