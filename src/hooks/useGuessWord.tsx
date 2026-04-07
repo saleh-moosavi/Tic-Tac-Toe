@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { guessWordAllwords } from "../constants";
+import { getSecureRandomInt } from "../utils/randomInteger";
 
 export default function useGuessWord() {
   const [word, setWord] = useState("");
@@ -8,7 +10,9 @@ export default function useGuessWord() {
   }, []);
 
   const handleReset = () => {
-    setWord("Hello" + ` ${Math.floor(Math.random() * 10)}`);
+    const index = getSecureRandomInt(guessWordAllwords.length);
+    const choosedWord = guessWordAllwords[index];
+    setWord(choosedWord);
   };
   return { word, handleReset };
 }
