@@ -3,3 +3,13 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+.article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  & > * {
+    cursor: default;
+  }
+}

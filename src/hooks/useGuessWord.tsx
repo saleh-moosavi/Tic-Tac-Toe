@@ -3,7 +3,12 @@ import { guessWordAllwords } from "../constants";
 import { getSecureRandomInt } from "../utils/randomInteger";
 
 export default function useGuessWord() {
-  const [word, setWord] = useState("");
+  const [word, setWord] = useState<
+    {
+      char: string;
+      isEntered: boolean;
+    }[]
+  >([]);
 
   useEffect(() => {
     handleReset();
@@ -12,7 +17,18 @@ export default function useGuessWord() {
   const handleReset = () => {
     const index = getSecureRandomInt(guessWordAllwords.length);
     const choosedWord = guessWordAllwords[index];
-    setWord(choosedWord);
+    const splitedWord = choosedWord.split("");
+    const finalWord = splitedWord.map((char) => {
+      return { char: char, isEntered: false };
+    });
+    setWord(finalWord);
   };
-  return { word, handleReset };
+
+  const checkEnteredChar = (index: number) => {
+    const wordCopy = [...word];
+    wordCopy[index].isEntered = true;
+    setWord(wordCopy);
+  };
+
+  return { word, handleReset, checkEnteredChar };
 }
