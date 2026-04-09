@@ -4,12 +4,23 @@
   gap: 1rem;
 }
 
-.article {
+.wordArticle {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
   & > * {
     cursor: default;
+  }
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  & > input {
+    text-align: center;
+    max-width: fit-content;
   }
 }
