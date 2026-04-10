@@ -5,7 +5,8 @@ import useGuessWord from "../hooks/useGuessWord";
 import Input from "../component/Input";
 
 export default function GuessWord() {
-  const { word, gameState, handleReset, checkEnteredChar } = useGuessWord();
+  const { word, wordRef, gameState, handleReset, checkEnteredChar } =
+    useGuessWord();
   return (
     <Card bgSrc="/home.jpeg" title="Guess The Word">
       <section className={styles.section}>
@@ -17,11 +18,18 @@ export default function GuessWord() {
           ))}
         </article>
         <form className={styles.form} onSubmit={checkEnteredChar}>
-          <Input type="string" maxLength={1} name="guess" />
+          <Input type="string" maxLength={1} name="guessInput" />
           <Btn type="submit">Check</Btn>
         </form>
         <hr />
-        <p>{gameState}</p>
+        <p
+          className={
+            gameState == "lose" ? styles.gameStateLose : styles.gameStateWin
+          }
+        >
+          {gameState !== "unknown" ? `You ${gameState}` : ""}
+          {gameState == "lose" && ` - The Word Was ${wordRef.current}`}
+        </p>
         <Btn onClick={handleReset}>Reset</Btn>
       </section>
     </Card>

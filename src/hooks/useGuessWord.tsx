@@ -4,6 +4,7 @@ import { getSecureRandomInt } from "../utils/randomInteger";
 
 export default function useGuessWord() {
   const maxTries = useRef<number>(0);
+  const wordRef = useRef<string>("");
   const [gameState, setGameState] = useState<"win" | "lose" | "unknown">(
     "unknown",
   );
@@ -20,8 +21,8 @@ export default function useGuessWord() {
 
   const handleReset = () => {
     const index = getSecureRandomInt(guessWordAllwords.length);
-    const choosedWord = guessWordAllwords[index];
-    const splitedWord = choosedWord.split("");
+    wordRef.current = guessWordAllwords[index];
+    const splitedWord = wordRef.current.split("");
     const finalWord = splitedWord.map((char) => {
       return { char: char, isEntered: false };
     });
@@ -33,7 +34,7 @@ export default function useGuessWord() {
   const checkEnteredChar = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const guessInputValue = formData.get("guess");
+    const guessInputValue = formData.get("guessInput");
     if (gameState !== "unknown" || guessInputValue == "") return;
     const wordCopy = [...word];
     wordCopy.map((item) => {
@@ -60,5 +61,5 @@ export default function useGuessWord() {
     }
   };
 
-  return { word, gameState, handleReset, checkEnteredChar };
+  return { word, gameState, wordRef, handleReset, checkEnteredChar };
 }

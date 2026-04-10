@@ -24,3 +24,12 @@
     max-width: fit-content;
   }
 }
+
+.gameStateWin {
+  color: palegreen;
+  font-weight: bold;
+}
+.gameStateLose {
+  color: tomato;
+  font-weight: bold;
+}
