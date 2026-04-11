@@ -37,16 +37,20 @@ export default function useGuessWord() {
     const guessInputValue = formData.get("guessInput");
     if (gameState !== "unknown" || guessInputValue == "") return;
     const wordCopy = [...word];
+    let isChanged = false;
     wordCopy.map((item) => {
       if (
         guessInputValue?.toString().toLocaleLowerCase() ==
         item.char.toLocaleLowerCase()
       ) {
         item.isEntered = true;
+        isChanged = true;
       }
     });
     setWord(wordCopy);
-    maxTries.current -= 1;
+    if (!isChanged) {
+      maxTries.current -= 1;
+    }
     const remainsChars = wordCopy.filter((item) => item.isEntered == false);
 
     if (maxTries.current == 0 && remainsChars.length > 0) {
@@ -61,5 +65,5 @@ export default function useGuessWord() {
     }
   };
 
-  return { word, gameState, wordRef, handleReset, checkEnteredChar };
+  return { word, gameState, wordRef, maxTries, handleReset, checkEnteredChar };
 }

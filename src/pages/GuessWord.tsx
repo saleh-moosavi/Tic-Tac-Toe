@@ -1,11 +1,11 @@
 import Btn from "../component/Btn";
 import Card from "../component/Card";
+import Input from "../component/Input";
 import styles from "./GuessWord.module.scss";
 import useGuessWord from "../hooks/useGuessWord";
-import Input from "../component/Input";
 
 export default function GuessWord() {
-  const { word, wordRef, gameState, handleReset, checkEnteredChar } =
+  const { word, wordRef, gameState, maxTries, handleReset, checkEnteredChar } =
     useGuessWord();
   return (
     <Card bgSrc="/home.jpeg" title="Guess The Word">
@@ -29,6 +29,7 @@ export default function GuessWord() {
         >
           {gameState !== "unknown" ? `You ${gameState}` : ""}
           {gameState == "lose" && ` - The Word Was ${wordRef.current}`}
+          {gameState == "unknown" && ` You Have ${maxTries.current} Try`}
         </p>
         <Btn onClick={handleReset}>Reset</Btn>
       </section>
