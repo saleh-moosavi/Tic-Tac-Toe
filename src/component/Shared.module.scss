@@ -108,4 +108,7 @@
   &:hover {
     background-color: cornsilk;
   }
+  &:disabled {
+    opacity: 0.5;
+  }
 }

@@ -12,13 +12,13 @@ export default function GuessWord() {
       <section className={styles.section}>
         <article className={styles.wordArticle}>
           {word.map((item, index) => (
-            <Btn key={index}>
+            <Btn key={index} costumClass={item.isEntered ? styles.btnSuccess : ""}>
               <p>{item.isEntered ? item.char : ".."}</p>
             </Btn>
           ))}
         </article>
         <form className={styles.form} onSubmit={checkEnteredChar}>
-          <Input type="string" maxLength={1} name="guessInput" />
+          <Input type="string" maxLength={1} name="guessInput" disabled={gameState !== "unknown"} />
           <Btn type="submit">Check</Btn>
         </form>
         <hr />
