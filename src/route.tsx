@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import GuessWord from "./pages/GuessWord";
 import TicTacToe from "./pages/TicTacToe";
 import MemoryGame from "./pages/MemoryGame";
+import Calculator from "./pages/Calculator";
 import GuessNumber from "./pages/GuessNumber";
 import Minesweeper from "./pages/Minesweeper";
 import { createBrowserRouter } from "react-router-dom";
@@ -49,10 +50,10 @@ export const router = createBrowserRouter([
       //   path: "/unit-converter",
       //   element: <Minesweeper />,
       // },
-      // {
-      //   path: "/calculator",
-      //   element: <Minesweeper />,
-      // },
+      {
+        path: "/calculator",
+        element: <Calculator />,
+      },
     ],
   },
 ]);

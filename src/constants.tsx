@@ -12,10 +12,10 @@ import {
   FaMoneyBill,
   FaRobot,
 } from "react-icons/fa";
-import { FaBomb, FaElevator, FaGear, FaTornado } from "react-icons/fa6";
 import { LiaHandScissors } from "react-icons/lia";
 import { RiCharacterRecognitionLine } from "react-icons/ri";
-import { TbNumbers, TbTicTac } from "react-icons/tb";
+import { TbNumbers, TbTicTac, TbCalculator } from "react-icons/tb";
+import { FaBomb, FaElevator, FaGear, FaTornado } from "react-icons/fa6";
 
 export const navLinks = [
   {
@@ -59,6 +59,11 @@ export const navLinks = [
     href: "/guess-word",
     icon: <RiCharacterRecognitionLine />,
     title: "Guess-The-Word",
+  }, {
+    id: 7,
+    href: "/calculator",
+    icon: <TbCalculator />,
+    title: "Calculator",
   },
 ];
 
