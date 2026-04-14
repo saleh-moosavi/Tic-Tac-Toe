@@ -59,7 +59,8 @@ export const navLinks = [
     href: "/guess-word",
     icon: <RiCharacterRecognitionLine />,
     title: "Guess-The-Word",
-  }, {
+  },
+  {
     id: 7,
     href: "/calculator",
     icon: <TbCalculator />,
@@ -1899,4 +1900,27 @@ export const guessWordAllwords = [
   "optimism",
   "shoulder",
   "tolerate",
+];
+
+export const calculatorBtns = [
+  "C",
+  "(",
+  ")",
+  "/",
+  "7",
+  "8",
+  "9",
+  "*",
+  "4",
+  "5",
+  "6",
+  "-",
+  "1",
+  "2",
+  "3",
+  "+",
+  "+ / -",
+  "0",
+  ".",
+  "=",
 ];

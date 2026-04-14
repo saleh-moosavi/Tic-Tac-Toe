@@ -1,0 +1,13 @@
+.resultArticle {
+  display: flex;
+  color: white;
+  font-size: smaller;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttonsArticle {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 0.5rem;
+}
