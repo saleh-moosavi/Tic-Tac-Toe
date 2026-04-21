@@ -11,15 +11,29 @@ export default function Calculator() {
   const [resultValue, setResultValue] = useState("");
   const enteredValueRef = useRef<string[]>([]);
 
-  const calculate = () => {
+  const calculate = (isEqual?: boolean) => {
     try {
-      setResultValue(eval(enteredValueRef.current.join("")));
+      const res = eval(enteredValueRef.current.join(""));
+      setResultValue(res);
+      if (isEqual === true && res) {
+        enteredValueRef.current = [res.toString()];
+      }
     } catch (error: unknown) {
       console.log(error);
       setResultValue("");
     } finally {
       setinputValue(enteredValueRef.current.join(""));
     }
+  };
+
+  const isOperator = (value: string) => {
+    return ["+", "-", "*", "/"].includes(value);
+  };
+
+  const isDigit = (value: string) => {
+    return ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."].includes(
+      value,
+    );
   };
 
   const handleClick = (value: string) => {
@@ -31,22 +45,99 @@ export default function Calculator() {
         break;
 
       case "=":
-        calculate();
+        calculate(true);
         break;
 
-      default:
-        enteredValueRef.current.push(value);
-        calculate();
+      default: {
+        const lastValue =
+          enteredValueRef.current[enteredValueRef.current.length - 1];
+
+        if (isOperator(value)) {
+          if (lastValue === "(") {
+            return;
+          }
+
+          if (isOperator(lastValue)) {
+            enteredValueRef.current[enteredValueRef.current.length - 1] = value;
+            calculate();
+            return;
+          }
+          if (
+            enteredValueRef.current.length === 0 ||
+            (value !== "-" && lastValue === "(")
+          ) {
+            return;
+          }
+
+          if (value === "-" && isOperator(lastValue)) {
+            enteredValueRef.current.push(value);
+            calculate();
+            return;
+          }
+
+          enteredValueRef.current.push(value);
+          calculate();
+        } else if (isDigit(value)) {
+          if (value === ".") {
+            let lastNumber = "";
+            for (let i = enteredValueRef.current.length - 1; i >= 0; i--) {
+              const item = enteredValueRef.current[i];
+              if (isOperator(item) || item === "(" || item === ")") {
+                break;
+              }
+              lastNumber = item + lastNumber;
+            }
+
+            if (lastNumber.includes(".")) {
+              return;
+            }
+          }
+
+          enteredValueRef.current.push(value);
+          calculate();
+        } else if (value === "(") {
+          if (
+            enteredValueRef.current.length === 0 ||
+            isOperator(lastValue) ||
+            lastValue === "("
+          ) {
+            enteredValueRef.current.push(value);
+            calculate();
+          }
+        } else if (value === ")") {
+          const openCount = enteredValueRef.current.filter(
+            (v) => v === "(",
+          ).length;
+          const closeCount = enteredValueRef.current.filter(
+            (v) => v === ")",
+          ).length;
+
+          if (
+            openCount > closeCount &&
+            !isOperator(lastValue) &&
+            lastValue !== "("
+          ) {
+            enteredValueRef.current.push(value);
+            calculate();
+          }
+        }
         break;
+      }
     }
   };
+
+  const handleBackspace = () => {
+    enteredValueRef.current = enteredValueRef.current.slice(0, -1);
+    calculate();
+  };
+
   return (
     <Card bgSrc="/home.jpeg" title="Calculator">
       <section className="space-y-5">
         <Input value={inputValue} type="string" />
         <article className={styles.resultArticle}>
           <p>Result : {resultValue}</p>
-          <p>
+          <p onClick={handleBackspace} style={{ cursor: "pointer" }}>
             <CgBackspace className="size-4" />
           </p>
         </article>
