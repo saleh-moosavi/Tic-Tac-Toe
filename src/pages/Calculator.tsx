@@ -36,6 +36,50 @@ export default function Calculator() {
     );
   };
 
+  const addDigit = (value: string) => {
+    const lastValue =
+      enteredValueRef.current[enteredValueRef.current.length - 1];
+
+    if (lastValue && isDigit(lastValue)) {
+      enteredValueRef.current[enteredValueRef.current.length - 1] =
+        lastValue + value;
+    } else {
+      enteredValueRef.current.push(value);
+    }
+    calculate();
+  };
+
+  const addOperator = (value: string) => {
+    const lastValue =
+      enteredValueRef.current[enteredValueRef.current.length - 1];
+
+    if (lastValue === "(") {
+      return;
+    }
+
+    if (isOperator(lastValue)) {
+      enteredValueRef.current[enteredValueRef.current.length - 1] = value;
+      calculate();
+      return;
+    }
+
+    if (
+      enteredValueRef.current.length === 0 ||
+      (value !== "-" && lastValue === "(")
+    ) {
+      return;
+    }
+
+    if (value === "-" && isOperator(lastValue)) {
+      enteredValueRef.current.push(value);
+      calculate();
+      return;
+    }
+
+    enteredValueRef.current.push(value);
+    calculate();
+  };
+
   const handleClick = (value: string) => {
     switch (value) {
       case "clear":
@@ -53,39 +97,12 @@ export default function Calculator() {
           enteredValueRef.current[enteredValueRef.current.length - 1];
 
         if (isOperator(value)) {
-          if (lastValue === "(") {
-            return;
-          }
-
-          if (isOperator(lastValue)) {
-            enteredValueRef.current[enteredValueRef.current.length - 1] = value;
-            calculate();
-            return;
-          }
-          if (
-            enteredValueRef.current.length === 0 ||
-            (value !== "-" && lastValue === "(")
-          ) {
-            return;
-          }
-
-          if (value === "-" && isOperator(lastValue)) {
-            enteredValueRef.current.push(value);
-            calculate();
-            return;
-          }
-
-          enteredValueRef.current.push(value);
-          calculate();
+          addOperator(value);
         } else if (isDigit(value)) {
           if (value === ".") {
             let lastNumber = "";
-            for (let i = enteredValueRef.current.length - 1; i >= 0; i--) {
-              const item = enteredValueRef.current[i];
-              if (isOperator(item) || item === "(" || item === ")") {
-                break;
-              }
-              lastNumber = item + lastNumber;
+            if (lastValue && isDigit(lastValue)) {
+              lastNumber = lastValue;
             }
 
             if (lastNumber.includes(".")) {
@@ -93,8 +110,7 @@ export default function Calculator() {
             }
           }
 
-          enteredValueRef.current.push(value);
-          calculate();
+          addDigit(value);
         } else if (value === "(") {
           if (
             enteredValueRef.current.length === 0 ||
@@ -127,7 +143,15 @@ export default function Calculator() {
   };
 
   const handleBackspace = () => {
-    enteredValueRef.current = enteredValueRef.current.slice(0, -1);
+    const lastValue =
+      enteredValueRef.current[enteredValueRef.current.length - 1];
+
+    if (lastValue && lastValue.length > 1) {
+      enteredValueRef.current[enteredValueRef.current.length - 1] =
+        lastValue.slice(0, -1);
+    } else {
+      enteredValueRef.current = enteredValueRef.current.slice(0, -1);
+    }
     calculate();
   };
 
