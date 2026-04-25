@@ -80,6 +80,50 @@ export default function Calculator() {
     calculate();
   };
 
+  const handleNegative = () => {
+    const lastValue =
+      enteredValueRef.current[enteredValueRef.current.length - 1];
+
+    if (!lastValue) {
+      enteredValueRef.current.push("-");
+      calculate();
+      return;
+    }
+
+    if (
+      isDigit(lastValue) ||
+      (lastValue.startsWith("-") && isDigit(lastValue.substring(1)))
+    ) {
+      const currentNumber = parseFloat(lastValue);
+      const toggledNumber = Math.abs(currentNumber);
+      enteredValueRef.current[enteredValueRef.current.length - 1] =
+        `(-${toggledNumber})`;
+      calculate();
+      return;
+    }
+
+    if (lastValue.startsWith("(") && lastValue.endsWith(")")) {
+      const innerValue = lastValue.slice(1, -1);
+
+      if (innerValue.startsWith("-")) {
+        const number = innerValue.slice(1);
+        enteredValueRef.current[enteredValueRef.current.length - 1] = number;
+      } else {
+        enteredValueRef.current[enteredValueRef.current.length - 1] =
+          `(-${innerValue})`;
+      }
+      calculate();
+      return;
+    }
+
+    if (lastValue && !isOperator(lastValue)) {
+      enteredValueRef.current[enteredValueRef.current.length - 1] =
+        `(-${lastValue})`;
+      calculate();
+    }
+    return;
+  };
+
   const handleClick = (value: string) => {
     switch (value) {
       case "clear":
@@ -90,6 +134,10 @@ export default function Calculator() {
 
       case "=":
         calculate(true);
+        break;
+
+      case "negative":
+        handleNegative();
         break;
 
       default: {
