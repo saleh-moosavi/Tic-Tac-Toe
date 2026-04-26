@@ -31,8 +31,9 @@ export default function Calculator() {
   };
 
   const isDigit = (value: string) => {
-    return ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."].includes(
-      value,
+    return (
+      value === "." ||
+      (!isNaN(parseFloat(value)) && isFinite(parseFloat(value)))
     );
   };
 
@@ -41,12 +42,30 @@ export default function Calculator() {
       enteredValueRef.current[enteredValueRef.current.length - 1];
 
     if (lastValue && isDigit(lastValue)) {
+      if (lastValue.includes(".") && value === ".") {
+        return;
+      }
+
+      if (lastValue === "0" && value !== ".") {
+        enteredValueRef.current[enteredValueRef.current.length - 1] = value;
+        calculate();
+        return;
+      }
+
+      if (lastValue === "0." && value !== ".") {
+        enteredValueRef.current[enteredValueRef.current.length - 1] =
+          lastValue + value;
+        calculate();
+        return;
+      }
+
       enteredValueRef.current[enteredValueRef.current.length - 1] =
         lastValue + value;
+      calculate();
     } else {
       enteredValueRef.current.push(value);
+      calculate();
     }
-    calculate();
   };
 
   const addOperator = (value: string) => {
@@ -147,17 +166,6 @@ export default function Calculator() {
         if (isOperator(value)) {
           addOperator(value);
         } else if (isDigit(value)) {
-          if (value === ".") {
-            let lastNumber = "";
-            if (lastValue && isDigit(lastValue)) {
-              lastNumber = lastValue;
-            }
-
-            if (lastNumber.includes(".")) {
-              return;
-            }
-          }
-
           addDigit(value);
         } else if (value === "(") {
           if (
