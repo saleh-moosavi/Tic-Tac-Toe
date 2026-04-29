@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export default function useCalculator() {
   const [inputValue, setinputValue] = useState("");
@@ -204,7 +204,62 @@ export default function useCalculator() {
     }
     calculate();
   };
-  
+
+  const handleKeyPress = (event: KeyboardEvent) => {
+    const key = event.key;
+
+    const preventDefaultKeys = [
+      "Enter",
+      "Escape",
+      "Backspace",
+      "+",
+      "-",
+      "*",
+      "/",
+      "(",
+      ")",
+      ".",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+    ];
+
+    if (preventDefaultKeys.includes(key)) {
+      event.preventDefault();
+    }
+
+    if (
+      /[0-9]/.test(key) ||
+      key === "+" ||
+      key === "-" ||
+      key === "*" ||
+      key === "/" ||
+      key === "." ||
+      key === "(" ||
+      key === ")" ||
+      key === "Enter" ||
+      key === "Escape"
+    ) {
+      handleClick(key == "Enter" ? "=" : key == "Escape" ? "clear" : key);
+    } else if (key === "Backspace") {
+      handleBackspace();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+
   return {
     inputValue,
     resultValue,

@@ -13,11 +13,7 @@ export default function Calculator() {
   return (
     <Card bgSrc="/home.jpeg" title="Calculator">
       <section className="space-y-5">
-        <Input
-          value={inputValue}
-          type="string"
-          onChange={(e) => handleClick(e.target.value)}
-        />
+        <Input value={inputValue} type="string" readOnly />
         <article className={styles.resultArticle}>
           <p>Result : {resultValue}</p>
           <p onClick={handleBackspace} style={{ cursor: "pointer" }}>
