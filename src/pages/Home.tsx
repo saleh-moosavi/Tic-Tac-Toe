@@ -10,11 +10,9 @@ export default function Home() {
       <article className={styles.article}>
         {navLinks.map((item) =>
           item.id === 0 ? null : (
-            <Btn>
-              <Link key={item.id} to={item.href}>
-                {item.title}
-              </Link>
-            </Btn>
+            <Link key={item.id} to={item.href}>
+              <Btn>{item.title}</Btn>
+            </Link>
           ),
         )}
       </article>
