@@ -8,6 +8,7 @@ import GuessNumber from "./pages/GuessNumber";
 import Minesweeper from "./pages/Minesweeper";
 import { createBrowserRouter } from "react-router-dom";
 import RockPaperScissors from "./pages/RockPaperScissors";
+import PasswordGenerator from "./pages/PasswordGenerator";
 
 export const router = createBrowserRouter([
   {
@@ -42,10 +43,10 @@ export const router = createBrowserRouter([
         path: "/guess-word",
         element: <GuessWord />,
       },
-      // {
-      //   path: "/password-generator",
-      //   element: <Minesweeper />,
-      // },
+      {
+        path: "/password-generator",
+        element: <PasswordGenerator />,
+      },
       // {
       //   path: "/unit-converter",
       //   element: <Minesweeper />,

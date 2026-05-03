@@ -14,8 +14,13 @@ import {
 } from "react-icons/fa";
 import { LiaHandScissors } from "react-icons/lia";
 import { RiCharacterRecognitionLine } from "react-icons/ri";
-import { TbNumbers, TbTicTac, TbCalculator } from "react-icons/tb";
 import { FaBomb, FaElevator, FaGear, FaTornado } from "react-icons/fa6";
+import {
+  TbNumbers,
+  TbTicTac,
+  TbCalculator,
+  TbPasswordUser,
+} from "react-icons/tb";
 
 export const navLinks = [
   {
@@ -65,6 +70,12 @@ export const navLinks = [
     href: "/calculator",
     icon: <TbCalculator />,
     title: "Calculator",
+  },
+  {
+    id: 8,
+    href: "/password-generator",
+    icon: <TbPasswordUser />,
+    title: "Password Generator",
   },
 ];
 
