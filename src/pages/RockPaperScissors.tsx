@@ -22,8 +22,7 @@ export default function RockPaperScissors() {
   return (
     <Card
       title="Rock · Paper · Scissors"
-      // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTckX8P9E-Z-50acV3B6PWXeNHD9pdExIJipg&s"
-      bgSrc="/home.jpeg"
+      bgSrc="/rock-paper-scissors.png"
     >
       <>
         {/* Player choices */}

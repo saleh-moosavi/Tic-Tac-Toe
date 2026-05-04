@@ -9,7 +9,7 @@ export default function Minesweeper() {
     useMinesweeper();
 
   return (
-    <Card title="Mine Sweeper" bgSrc="/tic-tac-toe.jpg">
+    <Card title="Mine Sweeper" bgSrc="/mine-sweeper.jpg">
       <div className={styles.levelContainer}>
         <Btn onClick={() => setLevel(5)}>Easy</Btn>
         <Btn onClick={() => setLevel(7)}>Medium</Btn>

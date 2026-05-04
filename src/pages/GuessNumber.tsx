@@ -22,8 +22,7 @@ export default function GuessNumber() {
   return (
     <>
       <Card
-        // https://media.proprofs.com/images/QM/user_images/2290773/1531093844.jpeg
-        bgSrc="/tic-tac-toe.jpg"
+        bgSrc="/guess-the-number.jpeg"
         title="Guess The Number"
       >
         <article className={styles.article}>
