@@ -8,7 +8,7 @@ export default function MemoryGame() {
     useMemoryGame();
 
   return (
-    <Card bgSrc="/home.jpeg" title="Memory Game">
+    <Card bgSrc="/memory-game.png" title="Memory Game">
       <div className={styles.memoryGame}>
         <div className={styles.levelSelect}>
           <Btn onClick={() => setLevel(12)}>Easy</Btn>

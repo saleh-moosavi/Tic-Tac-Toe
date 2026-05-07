@@ -11,7 +11,7 @@ export default function Calculator() {
     useCalculator();
 
   return (
-    <Card bgSrc="/home.jpeg" title="Calculator">
+    <Card bgSrc="/calculator.jpg" title="Calculator">
       <section className="space-y-5">
         <Input value={inputValue} type="string" readOnly />
         <article className={styles.resultArticle}>

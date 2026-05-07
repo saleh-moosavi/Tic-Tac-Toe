@@ -8,7 +8,7 @@ export default function GuessWord() {
   const { word, wordRef, gameState, maxTries, handleReset, checkEnteredChar } =
     useGuessWord();
   return (
-    <Card bgSrc="/home.jpeg" title="Guess The Word">
+    <Card bgSrc="/guess-the-word.webp" title="Guess The Word">
       <section className={styles.section}>
         <article className={styles.wordArticle}>
           {word.map((item, index) => (
