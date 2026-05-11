@@ -19,7 +19,7 @@ export default function PasswordGenerator() {
   } = usePasswordGenerator();
 
   return (
-    <Card bgSrc="/home.jpeg" title="Password Generator">
+    <Card bgSrc="/password-generator.jpg" title="Password Generator">
       <article className={styles.article}>
         <p className={styles.label}>Password :</p>
         <p className={styles.password}>{password}</p>
